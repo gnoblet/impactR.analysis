@@ -1,0 +1,21 @@
+Package: impactR.analysis
+Title: Analyzing survey data collected with Kobo
+Version: 0.0.0.9000
+Authors@R: 
+    person("Guillaume", "Noblet", , "gnoblet@zaclys.net")
+Description: Providing helpers to support and (quasi-)automate survey data analysis produced with Kobo.
+License: License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    dplyr (>= 1.1.0),
+    impactR,
+    janitor,
+    rio,ss
+    srvyr (<= 1.1.2)
+Remotes:
+  gnoblet/impactR
+Depends: 
+    R (>= 2.10)
+LazyData: true
