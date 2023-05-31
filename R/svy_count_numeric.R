@@ -1,0 +1,62 @@
+#' @title Survey count numeric
+#'
+#' @param design A srvyr::design object.
+#' @param col A column to calculate proportion from.
+#' @param group A quoted or unquoted vector of columns to group by. Default to NULL for no group.
+#' @param na_rm Should NAs from `col` be removed? Default to TRUE.
+#' @param stat_name What should the statistic's column be named? Default to "prop".
+#' @param ... Other parameters to pass to `srvyr::survey_prop()`.
+#'
+#' @inheritParams srvyr::survey_prop
+#'
+#' @family survey analysis functions
+#'
+#' @return A survey-summarized-count-numeric data frame
+#'
+#' @export
+svy_count_numeric <- function(design, col, group = NULL, na_rm = TRUE, stat_name = "median", vartype = "ci", level = 0.95, deff = FALSE, ...){
+
+  # Get col name
+  col_name <- rlang::as_name(rlang::enquo(col))
+
+  # Get number of NAs
+  na_count_tot <- sum(is.na(srvyr::pull(design, {{ col }})))
+  n_tot <- nrow(design)
+
+  # Remove NAs
+  if (rlang::is_true(na_rm)) design <- srvyr::drop_na(design, {{ col }})
+
+  # Mutate as character
+  to_return <- srvyr::mutate(design, "{{ col }}" := as.character({{ col }}))
+
+  # Group design for calculation
+  to_return <- srvyr::group_by(design, srvyr::across({{ group }}), srvyr::across({{ col }}))
+
+  # Summarize design
+  # - stat_name: the weighted proportion of obs
+  # - n_unw: the unweighted count of obs
+  to_return <- srvyr::summarize(
+    to_return,
+    "{stat_name}" := srvyr::survey_prop(vartype = vartype, level = level, deff = deff, ...),
+    "n_unw" := srvyr::unweighted(srvyr::n()))
+
+  # Get unweighted proportions
+  to_return <- dplyr::mutate(to_return, "{stat_name}_unw" := prop.table(.data$n_unw))
+
+  # Regroup by group to calculate unweighted total by groups
+  to_return <- dplyr::group_by(to_return, dplyr::across({{ group }}))
+
+  # Get unweighted total
+  to_return <- dplyr::mutate(to_return, "n_tot_unw" := sum(!!rlang::sym("n_unw"), na.rm = FALSE))
+
+  # Ungroup
+  to_return <- dplyr::ungroup(to_return)
+
+  # Add total number of obs and total number od NAs
+  to_return <- dplyr::mutate(
+    to_return,
+    "n_tot" = n_tot,
+    "na_count_tot" = na_count_tot)
+
+  return(to_return)
+}

@@ -2,7 +2,13 @@ Package: impactR.analysis
 Title: Analyzing survey data collected with Kobo
 Version: 0.0.0.9000
 Authors@R: 
-    person("Guillaume", "Noblet", , "gnoblet@zaclys.net")
+     c(
+        person(
+            'Noblet', 'Guillaume',
+            email = 'gnoblet@zaclys.net',
+            role = c('aut', 'cre')
+            )
+      )
 Description: Providing helpers to support and (quasi-)automate survey data analysis produced with Kobo.
 License: License: MIT + file LICENSE
 Encoding: UTF-8
@@ -12,8 +18,10 @@ Imports:
     dplyr (>= 1.1.0),
     impactR,
     janitor,
-    rio,ss
-    srvyr (<= 1.1.2)
+    rio,
+    srvyr (<= 1.1.2),
+    stats,
+    survey
 Remotes:
   gnoblet/impactR
 Depends: 
