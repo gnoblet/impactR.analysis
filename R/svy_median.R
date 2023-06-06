@@ -53,5 +53,12 @@ svy_median <- function(design, col, group = NULL, na_rm = TRUE, stat_name = "med
     "n_tot" = n_tot,
     "na_count_tot" = na_count_tot)
 
+  # Return column name
+  to_return <- dplyr::mutate(
+    to_return,
+    name = col_name,
+    .before = !!rlang::sym(stat_name))
+
+
   return(to_return)
 }

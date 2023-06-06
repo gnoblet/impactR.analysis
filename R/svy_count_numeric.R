@@ -37,7 +37,7 @@ svy_count_numeric <- function(design, col, group = NULL, na_rm = TRUE, stat_name
   # - n_unw: the unweighted count of obs
   to_return <- srvyr::summarize(
     to_return,
-    "{stat_name}" := srvyr::survey_prop(vartype = vartype, level = level, deff = deff, ...),
+    "{stat_name}" := srvyr::survey_prop(vartype = vartype, level = level, deff = deff, proportion = FALSE, ...),
     "n_unw" := srvyr::unweighted(srvyr::n()))
 
   # Get unweighted proportions
@@ -57,6 +57,15 @@ svy_count_numeric <- function(design, col, group = NULL, na_rm = TRUE, stat_name
     to_return,
     "n_tot" = n_tot,
     "na_count_tot" = na_count_tot)
+
+  # Change values column name
+  to_return <- dplyr::rename(to_return, values = {{ col }})
+
+  # Return column name
+  to_return <- dplyr::mutate(
+    to_return,
+    name = col_name,
+    .before = !!rlang::sym("values"))
 
   return(to_return)
 }

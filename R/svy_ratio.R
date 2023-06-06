@@ -55,7 +55,11 @@ svy_ratio <- function(design, num, denom, group = NULL, na_rm = TRUE, stat_name 
     "n_tot" = n_tot,
     "na_count_tot" = na_count_tot)
 
+  # Return column name
+  to_return <- dplyr::mutate(
+    to_return,
+    name = paste(num_name, denom_name, sep = " - "),
+    .before = !!rlang::sym(stat_name))
+
   return(to_return)
 }
-
-
