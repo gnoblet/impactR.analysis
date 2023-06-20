@@ -52,7 +52,7 @@ svy_interact <- function(design, interact, interact_key_sep = "*", group = NULL,
     "n_unw" := srvyr::unweighted(srvyr::n()))
 
   # Get unweighted proportions
-  to_return <- dplyr::mutate(to_return, "{stat_name}_unw" := prop.table(rlang::.data$n_unw))
+  to_return <- dplyr::mutate(to_return, "{stat_name}_unw" := prop.table(!!rlang::sym("n_unw")))
 
   # Regroup by group to calculate unweighted total by groups
   to_return <- dplyr::group_by(to_return, dplyr::across({{ group }}))
