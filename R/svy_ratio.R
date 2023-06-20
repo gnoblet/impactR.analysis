@@ -3,21 +3,28 @@
 #' @param design A srvyr::design object
 #' @param num The numerator column
 #' @param denom The denominator column
-#' @param group A quoted or unquoted vector of columns to group by. Default to NULL for no group
+#' @param ratio_key_sep A separator for the ratio key.
+#' @param group A quoted vector of columns to group by. Default to NULL for no group.
+#' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
 #' @param stat_name What should the statistic's column be named? Default to "ratio"
 #' @param na_rm Boolean. Remove any line that as an NA in `num` or `denom` Default to TRUE.
 #' @param ... Parameters to pass to srvyr::survey_mean()
+#'
+#' @importFrom rlang `:=`
 #'
 #' @family survey analysis functions
 #'
 #' @return A survey-summarized-ratio data frame
 #'
 #' @export
-svy_ratio <- function(design, num, denom, group = NULL, na_rm = TRUE, stat_name = "ratio", ...){
+svy_ratio <- function(design, num, denom, ratio_key_sep = " / ", group = NULL, group_key_sep = "*", na_rm = TRUE, stat_name = "ratio", ...){
 
   # Get col name
   num_name <- rlang::as_name(rlang::enquo(num))
   denom_name <- rlang::as_name(rlang::enquo(denom))
+
+  # Grouping key
+  group_key <- paste(group, collapse = group_key_sep)
 
   # Get number of NAs -- for ratio it either for num or denom
   na_count_tot <- sum(is.na(srvyr::pull(design, {{ denom }})) | is.na(srvyr::pull(design, {{ num }})))
@@ -58,8 +65,22 @@ svy_ratio <- function(design, num, denom, group = NULL, na_rm = TRUE, stat_name 
   # Return column name
   to_return <- dplyr::mutate(
     to_return,
-    name = paste(num_name, denom_name, sep = " - "),
+    name = paste(num_name, denom_name, sep = ratio_key_sep),
     .before = !!rlang::sym(stat_name))
+
+  if (group_key != "") {
+    # Add group key
+    to_return[["group_key"]] <- group_key
+
+    # Add group key values
+    to_return[["group_key_value"]] <- do.call(paste, c(to_return[group], sep = group_key_sep))
+    # to_return <- tidyr::unite(to_return, "group_key_value", tidyr::all_of(group), sep = group_key_sep, remove = FALSE)
+
+    # Place group_key in front
+    to_return <- dplyr::relocate(to_return, "group_key_value", .before = "name")
+    to_return <- dplyr::relocate(to_return, "group_key", .before = "group_key_value")
+
+  }
 
   return(to_return)
 }

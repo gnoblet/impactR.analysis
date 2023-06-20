@@ -6,23 +6,28 @@
 \usage{
 svy_interact(
   design,
-  col,
+  interact,
+  interact_key_sep = "*",
   group = NULL,
+  group_key_sep = "*",
   unnest_interaction = TRUE,
   na_rm = TRUE,
-  stat_name = "mean",
+  stat_name = "prop_interact",
   vartype = "ci",
   level = 0.95,
-  deff = FALSE,
   ...
 )
 }
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{col}{A column to calculate interactions from.}
+\item{interact}{A quoted vector of columns to calculate interactions from (must be quoted).}
 
-\item{group}{A quoted or unquoted vector of columns to group by. Default to NULL for no group.}
+\item{interact_key_sep}{A character string to separate interactions columns in a fancy 'interact_key" column.}
+
+\item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
+
+\item{group_key_sep}{A character string to separate grouping column names in a fancy 'group_key' column.}
 
 \item{unnest_interaction}{Should interaction be unnested? Default to TRUE.}
 
@@ -37,8 +42,6 @@ confidence interval ("ci"), variance ("var") or coefficient of variation
 \item{level}{(For vartype = "ci" only) A single number or vector of numbers indicating
 the confidence level}
 
-\item{deff}{A logical value to indicate whether the design effect should be returned.}
-
 \item{...}{Other parameters to pass to \code{srvyr::survey_mean()}.}
 }
 \value{
@@ -49,7 +52,6 @@ Survey interactions
 }
 \seealso{
 Other survey analysis functions: 
-\code{\link{svy_count_numeric}()},
 \code{\link{svy_mean}()},
 \code{\link{svy_median}()},
 \code{\link{svy_prop}()},

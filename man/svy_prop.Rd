@@ -8,11 +8,11 @@ svy_prop(
   design,
   col,
   group = NULL,
+  group_key_sep = "*",
   na_rm = TRUE,
   stat_name = "prop",
   vartype = "ci",
   level = 0.95,
-  deff = FALSE,
   ...
 )
 }
@@ -21,7 +21,9 @@ svy_prop(
 
 \item{col}{A column to calculate proportion from.}
 
-\item{group}{A quoted or unquoted vector of columns to group by. Default to NULL for no group.}
+\item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
+
+\item{group_key_sep}{A character string to separate grouping column names in a fancy 'group_key' column.}
 
 \item{na_rm}{Should NAs from \code{col} be removed? Default to TRUE.}
 
@@ -34,8 +36,6 @@ confidence interval ("ci"), variance ("var") or coefficient of variation
 \item{level}{(For vartype = "ci" only) A single number or vector of numbers indicating
 the confidence level}
 
-\item{deff}{A logical value to indicate whether the design effect should be returned.}
-
 \item{...}{Other parameters to pass to \code{srvyr::survey_prop()}.}
 }
 \value{
@@ -46,7 +46,6 @@ Survey proportion
 }
 \seealso{
 Other survey analysis functions: 
-\code{\link{svy_count_numeric}()},
 \code{\link{svy_interact}()},
 \code{\link{svy_mean}()},
 \code{\link{svy_median}()},

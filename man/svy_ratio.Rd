@@ -8,7 +8,9 @@ svy_ratio(
   design,
   num,
   denom,
+  ratio_key_sep = " / ",
   group = NULL,
+  group_key_sep = "*",
   na_rm = TRUE,
   stat_name = "ratio",
   ...
@@ -21,7 +23,11 @@ svy_ratio(
 
 \item{denom}{The denominator column}
 
-\item{group}{A quoted or unquoted vector of columns to group by. Default to NULL for no group}
+\item{ratio_key_sep}{A separator for the ratio key.}
+
+\item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
+
+\item{group_key_sep}{A character string to separate grouping column names in a fancy 'group_key' column.}
 
 \item{na_rm}{Boolean. Remove any line that as an NA in \code{num} or \code{denom} Default to TRUE.}
 
@@ -37,7 +43,6 @@ Survey ratio
 }
 \seealso{
 Other survey analysis functions: 
-\code{\link{svy_count_numeric}()},
 \code{\link{svy_interact}()},
 \code{\link{svy_mean}()},
 \code{\link{svy_median}()},

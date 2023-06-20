@@ -5,6 +5,7 @@
 #' @param na_rm Should NAs from `num` and `denom` be removed?
 #' @param var1 Column name.
 #' @param var2 Column name for two-sample case. Default to NULL.
+#' @param statistic See `stats::t.test()` for methods.
 #'
 #' @family test functions
 #'
@@ -13,7 +14,7 @@
 #' @return A survey-summarized-interaction tibble
 #'
 #' @export
-svy_test_t <- function(design, var1, var2 = NULL, group = NULL, na_rm = TRUE, statistic = "F", ...){
+svy_test_student <- function(design, var1, var2 = NULL, group = NULL, na_rm = TRUE, statistic = "F", ...){
 
   # Get column names
   var1_name <- rlang::as_name(rlang::enquo(var1))

@@ -10,20 +10,24 @@ Authors@R:
             )
       )
 Description: Providing helpers to support and (quasi-)automate survey data analysis produced with Kobo.
-License: License: MIT + file LICENSE
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
     dplyr (>= 1.1.0),
-    impactR,
-    janitor,
-    rio,
-    srvyr (<= 1.1.2),
+    impactR.kobo,
+    impactR.utils,
+    purrr,
+    glue,
+    srvyr,
     stats,
-    survey
+    survey,
+    rlang,
+    tidyr
 Remotes:
-  gnoblet/impactR
+  gnoblet/impactR.utils,
+  gnoblet/impactR.kobo
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5.0)
 LazyData: true

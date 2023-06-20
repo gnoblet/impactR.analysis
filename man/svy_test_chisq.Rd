@@ -37,6 +37,6 @@ Chi-squared survey tests, wrapper around survey::svychisq()
 }
 \seealso{
 Other test functions: 
-\code{\link{svy_test_t}()}
+\code{\link{svy_test_student}()}
 }
 \concept{test functions}

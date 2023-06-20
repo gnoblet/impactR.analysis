@@ -8,11 +8,11 @@ svy_median(
   design,
   col,
   group = NULL,
+  group_key_sep = "*",
   na_rm = TRUE,
   stat_name = "median",
   vartype = "ci",
   level = 0.95,
-  deff = FALSE,
   ...
 )
 }
@@ -21,7 +21,9 @@ svy_median(
 
 \item{col}{A column to calculate median from.}
 
-\item{group}{A quoted or unquoted vector of columns to group by. Default to NULL for no group.}
+\item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
+
+\item{group_key_sep}{A character string to separate grouping column names in a fancy 'group_key' column.}
 
 \item{na_rm}{Should NAs from \code{col} be removed? Default to TRUE.}
 
@@ -43,7 +45,6 @@ Survey median
 }
 \seealso{
 Other survey analysis functions: 
-\code{\link{svy_count_numeric}()},
 \code{\link{svy_interact}()},
 \code{\link{svy_mean}()},
 \code{\link{svy_prop}()},
