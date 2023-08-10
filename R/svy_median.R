@@ -43,8 +43,8 @@ svy_median <- function(design, col, group = NULL,  group_key_sep = "*", na_rm = 
   # - n_unw: the unweighted count of obs
   to_return <- srvyr::summarize(
     to_return,
-    "{stat_name}" := srvyr::survey_median({{ col }}, vartype = vartype, level = level, ...),
-    "{stat_name}_unw" := srvyr::unweighted(stats::median({{ col }})),
+    "{stat_name}" := srvyr::survey_median(!!rlang::sym(col_name), vartype = vartype, level = level, ...),
+    "{stat_name}_unw" := srvyr::unweighted(stats::median(!!rlang::sym(col_name))),
     "n_unw" := srvyr::unweighted(srvyr::n()))
 
   # Regroup by group to calculate unweighted total by groups

@@ -43,8 +43,8 @@ svy_ratio <- function(design, num, denom, ratio_key_sep = " / ", group = NULL, g
   # - n_unw: the unweighted count of obs
   to_return <- srvyr::summarize(
     to_return,
-    "{stat_name}" := srvyr::survey_ratio({{ num }}, {{ denom }}, ...),
-    "{stat_name}_unw" := srvyr::unweighted(sum({{ num }}) / sum({{ denom }})),
+    "{stat_name}" := srvyr::survey_ratio(!!rlang::sym(num_name), !!rlang::sym(denom_name), ...),
+    "{stat_name}_unw" := srvyr::unweighted(sum(!!rlang::sym(num_name)) / sum(!!rlang::sym(denom_name))),
     "n_unw" := srvyr::unweighted(srvyr::n()))
 
   # Regroup by group to calculate unweighted total by groups

@@ -43,8 +43,8 @@ svy_mean <- function(design, col, group = NULL, group_key_sep = "*", na_rm = TRU
   # - n_unw: the unweighted count of obs
   to_return <- srvyr::summarize(
     to_return,
-    "{stat_name}" := srvyr::survey_mean({{ col }}, vartype = vartype, level = level, ...),
-    "{stat_name}_unw" := srvyr::unweighted(mean({{ col }})),
+    "{stat_name}" := srvyr::survey_mean(!!rlang::sym(col_name), vartype = vartype, level = level, ...),
+    "{stat_name}_unw" := srvyr::unweighted(mean(!!rlang::sym(col_name))),
     "n_unw" := srvyr::unweighted(srvyr::n()))
 
   # Regroup by group to calculate unweighted total by groups
