@@ -6,7 +6,6 @@
 #' @param ratio_key_sep A separator for the ratio key.
 #' @param group A quoted vector of columns to group by. Default to NULL for no group.
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
-#' @param stat_name What should the statistic's column be named? Default to "ratio"
 #' @param na_rm Boolean. Remove any line that as an NA in `num` or `denom` Default to TRUE.
 #' @param ... Parameters to pass to srvyr::survey_mean()
 #'
@@ -17,7 +16,9 @@
 #' @return A survey-summarized-ratio data frame
 #'
 #' @export
-svy_ratio <- function(design, num, denom, ratio_key_sep = " / ", group = NULL, group_key_sep = "*", na_rm = TRUE, stat_name = "ratio", ...){
+svy_ratio <- function(design, num, denom, ratio_key_sep = " / ", group = NULL, group_key_sep = "*", na_rm = TRUE, vartype = "ci", level = 0.95, ...){
+
+  #------ Gather arguments
 
   # Get col name
   num_name <- rlang::as_name(rlang::enquo(num))
@@ -25,6 +26,28 @@ svy_ratio <- function(design, num, denom, ratio_key_sep = " / ", group = NULL, g
 
   # Grouping key
   group_key <- paste(group, collapse = group_key_sep)
+
+  #------ Checks
+
+  # Check if design is a design
+  if (!("tbl_svy") %in% class(design)) rlang::abort("'design' is not a `tbl_svy` object.")
+
+  # Check if num are in design
+  if_not_in_stop(design, num_name, df_name = "design", arg = "num")
+
+  # Check if denom are in design
+  if_not_in_stop(design, denom_name, df_name = "design", arg = "denom")
+
+  # Check if group cols are in design
+  if_not_in_stop(design, group, df_name = "design", arg = "group")
+
+  # Check if col is not a grouping column
+  if (any(c(num_name, denom_name) %in% group)) rlang::abort("Grouping columns in `group` should be different than `num` or `denom`.")
+
+  # Warn on the CI level:
+  if (level < 0.9 & vartype == "ci"){rlang::warn("The confidence level used  is below 90%.")}
+
+  #------ Body
 
   # Get number of NAs -- for ratio it either for num or denom
   na_count_tot <- sum(is.na(srvyr::pull(design, {{ denom }})) | is.na(srvyr::pull(design, {{ num }})))
@@ -39,13 +62,16 @@ svy_ratio <- function(design, num, denom, ratio_key_sep = " / ", group = NULL, g
   to_return <- srvyr::group_by(design, srvyr::across({{ group }}))
 
   # Summarize design
-  # - stat_name: the weighted proportion of obs
+  # - stat: the weighted proportion of obs
   # - n_unw: the unweighted count of obs
   to_return <- srvyr::summarize(
     to_return,
-    "{stat_name}" := srvyr::survey_ratio(!!rlang::sym(num_name), !!rlang::sym(denom_name), ...),
-    "{stat_name}_unw" := srvyr::unweighted(sum(!!rlang::sym(num_name)) / sum(!!rlang::sym(denom_name))),
+    "stat" := srvyr::survey_ratio(!!rlang::sym(num_name), !!rlang::sym(denom_name), ...),
+    "stat_unw" := srvyr::unweighted(sum(!!rlang::sym(num_name)) / sum(!!rlang::sym(denom_name))),
     "n_unw" := srvyr::unweighted(srvyr::n()))
+
+  # Add stat type
+  to_return[["stat_type"]] <- "ratio"
 
   # Regroup by group to calculate unweighted total by groups
   to_return <- dplyr::group_by(to_return, dplyr::across({{ group }}))
@@ -65,22 +91,11 @@ svy_ratio <- function(design, num, denom, ratio_key_sep = " / ", group = NULL, g
   # Return column name
   to_return <- dplyr::mutate(
     to_return,
-    name = paste(num_name, denom_name, sep = ratio_key_sep),
-    .before = !!rlang::sym(stat_name))
+    var = paste(num_name, denom_name, sep = ratio_key_sep),
+    .before = dplyr::all_of("stat"))
 
-  if (group_key != "") {
-    # Add group key
-    to_return[["group_key"]] <- group_key
-
-    # Add group key values
-    to_return[["group_key_value"]] <- do.call(paste, c(to_return[group], sep = group_key_sep))
-    # to_return <- tidyr::unite(to_return, "group_key_value", tidyr::all_of(group), sep = group_key_sep, remove = FALSE)
-
-    # Place group_key in front
-    to_return <- dplyr::relocate(to_return, "group_key_value", .before = "name")
-    to_return <- dplyr::relocate(to_return, "group_key", .before = "group_key_value")
-
-  }
+  # Get the group keys and values
+  if (group_key != "") {to_return <- add_group_key(to_return, group, group_key, group_key_sep, before = "var")}
 
   return(to_return)
 }

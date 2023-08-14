@@ -7,7 +7,6 @@
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
 #' @param unnest_interaction Should interaction be unnested? Default to TRUE.
 #' @param na_rm Should NAs from `col` be removed? Default to TRUE.
-#' @param stat_name What should the statistic's column be named? Default to "prop".
 #' @param ... Other parameters to pass to `srvyr::survey_mean()`.
 #'
 #' @inheritParams srvyr::survey_mean
@@ -19,14 +18,34 @@
 #' @return A survey-summarized-mean data frame
 #'
 #' @export
-svy_interact <- function(design, interact, interact_key_sep = "*", group = NULL, group_key_sep = "*", unnest_interaction = TRUE, na_rm = TRUE, stat_name = "prop_interact", vartype = "ci", level = 0.95, ...){
+svy_interact <- function(design, interact, interact_key_sep = "*", group = NULL, group_key_sep = "*", unnest_interaction = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95, ...){
 
+  #------ Gather arguments
 
   # Get interaction key
   interact_key <- paste(interact, collapse = interact_key_sep)
 
   # Grouping key
   group_key <- paste(group, collapse = group_key_sep)
+
+  #------ Checks
+
+  # Check if design is a design
+  if (!("tbl_svy") %in% class(design)) rlang::abort("'design' is not a `tbl_svy` object.")
+
+  # Check if interact are in design
+  if_not_in_stop(design, interact, df_name = "design", arg = "interact")
+
+  # Check if group cols are in design
+  if_not_in_stop(design, group, df_name = "design", arg = "group")
+
+  # Check if col is not a grouping column
+  if (any(interact %in% group)) rlang::abort("Grouping columns in `group` should be different than those in `interact`.")
+
+  # Warn on the CI level:
+  if (level < 0.9 & vartype == "ci"){rlang::warn("The confidence level used  is below 90%.")}
+
+  #------ Body
 
   # Get number of rows
   n_tot <- nrow(design)
@@ -44,15 +63,18 @@ svy_interact <- function(design, interact, interact_key_sep = "*", group = NULL,
     srvyr::interact(interaction = srvyr::across({{ interact }})))
 
   # Summarize design
-  # - stat_name: the weighted proportion of obs
+  # - stat: the weighted proportion of obs
   # - n_unw: the unweighted count of obs
   to_return <- srvyr::summarize(
     to_return,
-    "{stat_name}" := srvyr::survey_mean(vartype = vartype, level = level, ...),
+    "stat" := srvyr::survey_mean(vartype = vartype, level = level, ...),
     "n_unw" := srvyr::unweighted(srvyr::n()))
 
+  # Add stat type
+  to_return[["stat_type"]] <- "interaction_proportion"
+
   # Get unweighted proportions
-  to_return <- dplyr::mutate(to_return, "{stat_name}_unw" := prop.table(!!rlang::sym("n_unw")))
+  to_return <- dplyr::mutate(to_return, "stat_unw" := prop.table(!!rlang::sym("n_unw")))
 
   # Regroup by group to calculate unweighted total by groups
   to_return <- dplyr::group_by(to_return, dplyr::across({{ group }}))
@@ -70,32 +92,16 @@ svy_interact <- function(design, interact, interact_key_sep = "*", group = NULL,
     "na_count_tot" = na_count_tot)
 
   if (unnest_interaction){
+
     to_return <- to_return |> tidyr::unnest("interaction")
 
-    if (interact_key != "") {
-      # Add group key
-      to_return[["interact_key"]] <- interact_key
+    # Get the interact keys and values
+    if (interact_key != "") {to_return <- add_interact_key(to_return, interact, interact_key, interact_key_sep, before = "stat")}
 
-      # Add group key values
-      to_return[["interact_key_value"]] <- do.call(paste, c(to_return[interact], sep = interact_key_sep))
-
-      # Place interact_key in front
-      to_return <- dplyr::relocate(to_return, "interact_key", .before = stat_name)
-    }
   }
 
-  if (group_key != "") {
-    # Add group key
-    to_return[["group_key"]] <- group_key
-
-    # Add group key values
-    to_return[["group_key_value"]] <- do.call(paste, c(to_return[group], sep = group_key_sep))
-    # to_return <- tidyr::unite(to_return, "group_key_value", tidyr::all_of(group), sep = group_key_sep, remove = FALSE)
-
-    # Place group_key in front
-    to_return <- dplyr::relocate(to_return, "group_key_value", .before = stat_name)
-    to_return <- dplyr::relocate(to_return, "group_key", .before = "group_key_value")
-  }
+  # Get the group keys and values
+  if (group_key != "") {to_return <- add_group_key(to_return, group, group_key, group_key_sep, before = "stat")}
 
 
   return(to_return)

@@ -1,11 +1,10 @@
-#' @title Survey mean
+#' @title Survey quantile
 #'
 #' @param design A srvyr::design object.
-#' @param col A column to calculate mean from.
+#' @param col A column to calculate quantile from.
 #' @param group A quoted vector of columns to group by. Default to NULL for no group.
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
 #' @param na_rm Should NAs from `col` be removed? Default to TRUE.
-#' @param stat_name What should the statistic's column be named? Default to "mean".
 #' @param ... Other parameters to pass to `srvyr::survey_mean()`.
 #'
 #' @inheritParams srvyr::survey_mean
@@ -17,9 +16,7 @@
 #' @return A survey-summarized-mean data frame
 #'
 #' @export
-svy_mean <- function(design, col, group = NULL, group_key_sep = "*", na_rm = TRUE, stat_name = "mean", vartype = "ci", level = 0.95, ...){
-
-  #------ Gather arguments
+svy_quantile <- function(design, col, quantiles = c(0.25, 0.5, 0.75), group = NULL, group_key_sep = "*", na_rm = TRUE, stat = "quantile", vartype = "ci", level = 0.95, ...){
 
   # Get col name
   col_name <- rlang::as_name(rlang::enquo(col))
@@ -27,24 +24,8 @@ svy_mean <- function(design, col, group = NULL, group_key_sep = "*", na_rm = TRU
   # Grouping key
   group_key <- paste(group, collapse = group_key_sep)
 
-  #------ Checks
-
-  # Check if design is a design
-  if (!("tbl_svy") %in% class(design)) rlang::abort("'design' is not a `tbl_svy` object.")
-
-  # Check if col are in design
-  if_not_in_stop(design, col_name, df_name = "design", arg = "col")
-
-  # Check if group cols are in design
-  if_not_in_stop(design, group, df_name = "design", arg = "group")
-
   # Check if col is not a grouping column
   if (col_name %in% group) rlang::abort("Grouping columns in `group` should be different than `col`.")
-
-  # Warn on the CI level:
-  if (level < 0.9 & vartype == "ci"){rlang::warn("The confidence level used  is below 90%.")}
-
-  #------ Body
 
   # Get number of NAs
   na_count_tot <- sum(is.na(srvyr::pull(design, {{ col }})))
@@ -61,12 +42,14 @@ svy_mean <- function(design, col, group = NULL, group_key_sep = "*", na_rm = TRU
   # - n_unw: the unweighted count of obs
   to_return <- srvyr::summarize(
     to_return,
-    "stat" := srvyr::survey_mean(!!rlang::sym(col_name), vartype = vartype, level = level, ...),
+    "stat" := srvyr::survey_quantile(!!rlang::sym(col_name), quantiles = quantiles, vartype = vartype, level = level, ...),
     "stat_unw" := srvyr::unweighted(mean(!!rlang::sym(col_name))),
     "n_unw" := srvyr::unweighted(srvyr::n()))
 
   # Add stat type
-  to_return[["stat_type"]] <- "mean"
+  to_return[["stat_type"]] <- "quantile"
+
+  return(to_return)
 
   # Regroup by group to calculate unweighted total by groups
   to_return <- dplyr::group_by(to_return, dplyr::across({{ group }}))
@@ -89,7 +72,6 @@ svy_mean <- function(design, col, group = NULL, group_key_sep = "*", na_rm = TRU
     var = col_name,
     .before = dplyr::all_of("stat"))
 
-  # Get the group keys and values
   if (group_key != "") {to_return <- add_group_key(to_return, group, group_key, group_key_sep, before = "var")}
 
   return(to_return)

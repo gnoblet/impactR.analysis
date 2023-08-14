@@ -14,7 +14,7 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-proportion_all_select_one <- function(design, survey, choices = NULL, group = NULL, label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
+proportion_all_select_one <- function(design, survey, choices = NULL, group = NULL, group_key_sep = "*", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
   # Check
   if_not_in_stop(survey, c("type", "name"), "survey")
@@ -28,9 +28,13 @@ proportion_all_select_one <- function(design, survey, choices = NULL, group = NU
   # select_ones that are not grouping columns
   select_ones <- select_ones[!(select_ones %in% group)]
 
-  proportions <- purrr::map(select_ones, \(x) proportion_select_one(design = design, col = {{ x }}, survey = survey, choices = choices, group =  group, label_survey = label_survey, na_rm = na_rm, vartype = vartype, level = level))
+  proportions <- purrr::map(select_ones, \(x) {
+    prop <- proportion_select_one(design = design, col = {{ x }}, survey = survey, choices = choices, group =  group, label_survey = label_survey, na_rm = na_rm, vartype = vartype, level = level)
 
-  proportions <- purrr::set_names(proportions, select_ones)
+    prop <- dplyr::mutate(prop, "var_value" := as.character(!!rlang::sym("var_value")))
+    })
+
+  proportions <- purrr::list_rbind(proportions)
 
   return(proportions)
 

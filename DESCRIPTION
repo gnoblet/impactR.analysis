@@ -18,7 +18,7 @@ Imports:
     dplyr (>= 1.1.0),
     impactR.kobo,
     impactR.utils,
-    purrr,
+    purrr (>= 1.0.0),
     glue,
     srvyr,
     stats,
@@ -31,3 +31,7 @@ Remotes:
 Depends: 
     R (>= 3.5.0)
 LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
