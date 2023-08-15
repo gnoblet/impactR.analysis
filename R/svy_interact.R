@@ -1,12 +1,12 @@
 #' @title Survey interactions
 #'
 #' @param design A srvyr::design object.
-#' @param interact A quoted vector of columns to calculate interactions from (must be quoted).
+#' @param interact A quoted vector of variables to calculate interactions from (must be quoted).
 #' @param interact_key_sep A character string to separate interactions columns in a fancy 'interact_key" column.
 #' @param group A quoted vector of columns to group by. Default to NULL for no group.
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
 #' @param unnest_interaction Should interaction be unnested? Default to TRUE.
-#' @param na_rm Should NAs from `col` be removed? Default to TRUE.
+#' @param na_rm Should NAs from `interact` be removed? Default to TRUE.
 #' @param ... Other parameters to pass to `srvyr::survey_mean()`.
 #'
 #' @inheritParams srvyr::survey_mean

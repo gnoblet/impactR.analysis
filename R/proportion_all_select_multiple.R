@@ -17,23 +17,13 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-proportion_all_select_multiple <- function(design, survey, choices = NULL, group = NULL, choices_sep = "_", label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, stat_name = "prop", vartype = "ci", level = 0.95){
-
-  # Check
-  if_not_in_stop(survey, c("type", "name"), "survey")
-  if (!is.null(choices)) if_not_in_stop(choices, c("label", "name"), "choices")
+proportion_all_select_multiple <- function(design, survey, choices, group = NULL, group_key_sep = "*", choices_sep = "_", label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, stat_name = "prop", vartype = "ci", level = 0.95){
 
   select_multiples <- impactR.kobo::get_survey_select_multiple(survey)
 
-  # select_multiples that exists in design
-  select_multiples <- select_multiples[select_multiples %in% colnames(design)]
+  proportions <- purrr::map(select_multiples, \(x) proportion_select_multiple(design, var = {{ x }}, survey = survey, choices = choices, group =  group, group_key_sep = group_key_sep, label_survey = label_survey, label_choices = label_choices, na_rm = na_rm, vartype = vartype, level = level))
 
-  # select_multiples that are not grouping columns
-  select_multiples <- select_multiples[!(select_multiples %in% group)]
-
-  proportions <- purrr::map(select_multiples, \(x) proportion_select_multiple(design, col = {{ x }}, survey = survey, choices = choices, group =  group, label_survey = label_survey, label_choices = label_choices, na_rm = na_rm, vartype = vartype, level = level))
-
-  proportions <- purrr::set_names(proportions, select_multiples)
+  proportions <- purrr::list_rbind(proportions)
 
 
   return(proportions)

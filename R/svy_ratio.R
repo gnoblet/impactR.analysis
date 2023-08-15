@@ -1,8 +1,8 @@
 #' @title Survey ratio
 #'
-#' @param design A srvyr::design object
-#' @param num The numerator column
-#' @param denom The denominator column
+#' @param design A srvyr::design object.
+#' @param num The numerator variable.
+#' @param denom The denominator variable.
 #' @param ratio_key_sep A separator for the ratio key.
 #' @param group A quoted vector of columns to group by. Default to NULL for no group.
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
@@ -20,7 +20,7 @@ svy_ratio <- function(design, num, denom, ratio_key_sep = " / ", group = NULL, g
 
   #------ Gather arguments
 
-  # Get col name
+  # Get var names
   num_name <- rlang::as_name(rlang::enquo(num))
   denom_name <- rlang::as_name(rlang::enquo(denom))
 

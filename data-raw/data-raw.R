@@ -58,6 +58,10 @@ survey <- impactR::split_survey(survey, type)
 # Rename one language label column to label
 survey <- dplyr::rename(survey, label = label_francais)
 
+# Keep only the design variables for the sake of simplicity
+# Maybe to be changed later for checks
+survey <- dplyr::filter(survey, name %in% vars)
+
 # Sheet choices contains, well, the choices sheet
 choices <- hti_msna_2022$choices
 

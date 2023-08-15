@@ -1,10 +1,10 @@
 #' @title Survey proportion
 #'
 #' @param design A srvyr::design object.
-#' @param col A column to calculate proportion from.
+#' @param var A variable to calculate proportion from.
 #' @param group A quoted vector of columns to group by. Default to NULL for no group.
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
-#' @param na_rm Should NAs from `col` be removed? Default to TRUE.
+#' @param na_rm Should NAs from `var` be removed? Default to TRUE.
 #' @param ... Other parameters to pass to `srvyr::survey_prop()`.
 #'
 #' @inheritParams srvyr::survey_prop
@@ -16,12 +16,12 @@
 #' @return A survey-summarized-proportion data frame
 #'
 #' @export
-svy_prop <- function(design, col, group = NULL, group_key_sep = "*", na_rm = TRUE, vartype = "ci", level = 0.95, ...){
+svy_prop <- function(design, var, group = NULL, group_key_sep = "*", na_rm = TRUE, vartype = "ci", level = 0.95, ...){
 
   #------ Gather arguments
 
-  # Get col name
-  col_name <- rlang::as_name(rlang::enquo(col))
+  # Get var name
+  var_name <- rlang::as_name(rlang::enquo(var))
 
   # Grouping key
   group_key <- paste(group, collapse = group_key_sep)
@@ -31,14 +31,14 @@ svy_prop <- function(design, col, group = NULL, group_key_sep = "*", na_rm = TRU
   # Check if design is a design
   if (!("tbl_svy") %in% class(design)) rlang::abort("'design' is not a `tbl_svy` object.")
 
-  # Check if col are in design
-  if_not_in_stop(design, col_name, df_name = "design", arg = "col")
+  # Check if var are in design
+  if_not_in_stop(design, var_name, df_name = "design", arg = "var")
 
   # Check if group cols are in design
   if_not_in_stop(design, group, df_name = "design", arg = "group")
 
-  # Check if col is not a grouping column
-  if (col_name %in% group) rlang::abort("Grouping columns in `group` should be different than `col`.")
+  # Check if var is not a grouping column
+  if (var_name %in% group) rlang::abort("Grouping columns in `group` should be different than `var`.")
 
   # Warn on the CI level:
   if (level < 0.9 & vartype == "ci"){rlang::warn("The confidence level used  is below 90%.")}
@@ -46,14 +46,14 @@ svy_prop <- function(design, col, group = NULL, group_key_sep = "*", na_rm = TRU
   #------ Body
 
   # Get number of NAs
-  na_count_tot <- sum(is.na(srvyr::pull(design, {{ col }})))
+  na_count_tot <- sum(is.na(srvyr::pull(design, {{ var }})))
   n_tot <- nrow(design)
 
   # Remove NAs
-  if (na_rm) design <- srvyr::drop_na(design, {{ col }})
+  if (na_rm) design <- srvyr::drop_na(design, {{ var }})
 
   # Group design for calculation
-  to_return <- srvyr::group_by(design, srvyr::across({{ group }}), srvyr::across({{ col }}))
+  to_return <- srvyr::group_by(design, srvyr::across({{ group }}), srvyr::across({{ var }}))
 
   # Summarize design
   # - stat: the weighted proportion of obs
@@ -85,12 +85,12 @@ svy_prop <- function(design, col, group = NULL, group_key_sep = "*", na_rm = TRU
     "na_count_tot" = na_count_tot)
 
   # Change values column name
-  to_return <- dplyr::rename(to_return, "var_value" = {{ col }})
+  to_return <- dplyr::rename(to_return, "var_value" = {{ var }})
 
   # Return column name
   to_return <- dplyr::mutate(
     to_return,
-    var = col_name,
+    var = var_name,
     .before = dplyr::all_of("var_value"))
 
   # Get the group keys and values

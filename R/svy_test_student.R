@@ -3,8 +3,8 @@
 #' @param design A srvyr::design object.
 #' @param group A quoted or unquoted vector of columns to group by. Default to NULL for no group.
 #' @param na_rm Should NAs from `num` and `denom` be removed?
-#' @param var1 Column name.
-#' @param var2 Column name for two-sample case. Default to NULL.
+#' @param var1 Var name 1.
+#' @param var2 Var name 2 for two-sample case. Default to NULL.
 #' @param statistic See `stats::t.test()` for methods.
 #'
 #' @family test functions

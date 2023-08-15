@@ -42,7 +42,7 @@ if_not_in_stop <- function(df, cols, df_name, arg = NULL){
 
 
 # Just a helper to not copy-paste in each svy_ function for grouping
-add_group_key <- function(df, group, interact_key, interact_key_sep, before){
+add_group_key <- function(df, group,  group_key, group_key_sep, before){
 
   # Add group key
   df[["group_key"]] <- group_key

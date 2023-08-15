@@ -3,8 +3,8 @@
 #' @param design A srvyr::design object.
 #' @param group A quoted or unquoted vector of columns to group by. Default to NULL for no group.
 #' @param na_rm Should NAs from `var1` and `var2` be removed? Default to TRUE.
-#' @param var1 Column name.
-#' @param var2 Column name.
+#' @param var1 Var name 1.
+#' @param var2 Var name 2.
 #' @param ... Other parameters to pass to `survey::svychisq()`.
 #'
 #' @family test functions
