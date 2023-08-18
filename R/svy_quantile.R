@@ -5,9 +5,9 @@
 #' @param group A quoted vector of columns to group by. Default to NULL for no group.
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
 #' @param na_rm Should NAs from `var` be removed? Default to TRUE.
-#' @param ... Other parameters to pass to `srvyr::survey_mean()`.
+#' @param ... Other parameters to pass to `srvyr::survey_quantile()`.
 #'
-#' @inheritParams srvyr::survey_mean
+#' @inheritParams srvyr::survey_quantile
 #'
 #' @importFrom rlang `:=`
 #'
@@ -16,7 +16,7 @@
 #' @return A survey-summarized-mean data frame
 #'
 #' @export
-svy_quantile <- function(design, var, quantiles = c(0.25, 0.5, 0.75), group = NULL, group_key_sep = "*", na_rm = TRUE, stat = "quantile", vartype = "ci", level = 0.95, ...){
+svy_quantile <- function(design, var, quantiles = c(0.25, 0.5, 0.75), group = NULL, group_key_sep = "*", na_rm = TRUE, vartype = "ci", level = 0.95, ...){
 
   # Get var name
   var_name <- rlang::as_name(rlang::enquo(var))

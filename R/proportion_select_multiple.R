@@ -61,7 +61,7 @@ proportion_select_multiple <- function(design, var, survey, choices, choices_sep
   # That warning + going through behavior could actually be changed if needed
   labels <- impactR.kobo::get_survey_choices(survey, choices, !!rlang::sym(var_name), sep = choices_sep, label = TRUE)
   labels <- tidyr::unite(labels, "child", "col", "name", sep = choices_sep, remove = FALSE)
-  labels <- dplyr::filter(labels, !(child %in% select_multiple_child_not_in_design))
+  labels <- dplyr::filter(labels, !(!!rlang::sym("child") %in% select_multiple_child_not_in_design))
 
   proportions <- purrr::map2(select_multiple_child_in_design, labels[["name"]], \(x,y) {
 

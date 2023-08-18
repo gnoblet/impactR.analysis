@@ -17,9 +17,9 @@ svy_test_student(
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{var1}{Column name.}
+\item{var1}{Var name 1.}
 
-\item{var2}{Column name for two-sample case. Default to NULL.}
+\item{var2}{Var name 2 for two-sample case. Default to NULL.}
 
 \item{group}{A quoted or unquoted vector of columns to group by. Default to NULL for no group.}
 

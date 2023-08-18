@@ -4,19 +4,19 @@
 \alias{if_not_in_stop}
 \title{Stop statement "If not in colnames"}
 \usage{
-if_not_in_stop(.tbl, cols, df, arg = NULL)
+if_not_in_stop(df, cols, df_name, arg = NULL)
 }
 \arguments{
-\item{.tbl}{A tibble}
+\item{df}{A dataframe.}
 
-\item{cols}{A vector of column names (quoted)}
+\item{cols}{A vector of column names (quoted).}
 
-\item{df}{Provide the tibble name as a character string}
+\item{df_name}{Provide the tibble name as a character string.}
 
 \item{arg}{Default to NULL.}
 }
 \value{
-A stop statement
+A stop statement.
 }
 \description{
 Stop statement "If not in colnames"

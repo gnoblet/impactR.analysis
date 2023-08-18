@@ -12,16 +12,17 @@ svy_ratio(
   group = NULL,
   group_key_sep = "*",
   na_rm = TRUE,
-  stat_name = "ratio",
+  vartype = "ci",
+  level = 0.95,
   ...
 )
 }
 \arguments{
-\item{design}{A srvyr::design object}
+\item{design}{A srvyr::design object.}
 
-\item{num}{The numerator column}
+\item{num}{The numerator variable.}
 
-\item{denom}{The denominator column}
+\item{denom}{The denominator variable.}
 
 \item{ratio_key_sep}{A separator for the ratio key.}
 
@@ -31,9 +32,13 @@ svy_ratio(
 
 \item{na_rm}{Boolean. Remove any line that as an NA in \code{num} or \code{denom} Default to TRUE.}
 
-\item{stat_name}{What should the statistic's column be named? Default to "ratio"}
+\item{vartype}{Report variability as one or more of: standard error ("se", default),
+confidence interval ("ci"), variance ("var") or coefficient of variation
+("cv").}
 
-\item{...}{Parameters to pass to srvyr::survey_mean()}
+\item{level}{A single number or vector of numbers indicating the confidence level}
+
+\item{...}{Parameters to pass to \code{srvyr::survey_ratio()}.}
 }
 \value{
 A survey-summarized-ratio data frame
@@ -46,6 +51,7 @@ Other survey analysis functions:
 \code{\link{svy_interact}()},
 \code{\link{svy_mean}()},
 \code{\link{svy_median}()},
-\code{\link{svy_prop}()}
+\code{\link{svy_prop}()},
+\code{\link{svy_quantile}()}
 }
 \concept{survey analysis functions}

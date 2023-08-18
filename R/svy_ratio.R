@@ -7,9 +7,11 @@
 #' @param group A quoted vector of columns to group by. Default to NULL for no group.
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
 #' @param na_rm Boolean. Remove any line that as an NA in `num` or `denom` Default to TRUE.
-#' @param ... Parameters to pass to srvyr::survey_mean()
+#' @param ... Parameters to pass to `srvyr::survey_ratio()`.
 #'
 #' @importFrom rlang `:=`
+#'
+#' @inheritParams srvyr::survey_ratio
 #'
 #' @family survey analysis functions
 #'

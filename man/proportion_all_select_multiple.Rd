@@ -7,8 +7,9 @@
 proportion_all_select_multiple(
   design,
   survey,
-  choices = NULL,
+  choices,
   group = NULL,
+  group_key_sep = "*",
   choices_sep = "_",
   label_survey = TRUE,
   label_choices = TRUE,
@@ -27,13 +28,15 @@ proportion_all_select_multiple(
 
 \item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
 
+\item{group_key_sep}{A character string to separate grouping column names in a fancy 'group_key' column.}
+
 \item{choices_sep}{Select multiples choices separator.}
 
 \item{label_survey}{Boolean. Retrieve questions label from the survey sheet? Default to TRUE.}
 
 \item{label_choices}{Boolean. Retrieve choices label from the choices sheet? Default to TRUE.}
 
-\item{na_rm}{Should NAs from \code{col} be removed? Default to TRUE.}
+\item{na_rm}{Should NAs from \code{var} be removed? Default to TRUE.}
 
 \item{stat_name}{What should the statistic's column be named? Default to "mean".}
 

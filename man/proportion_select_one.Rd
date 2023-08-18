@@ -6,13 +6,13 @@
 \usage{
 proportion_select_one(
   design,
-  col,
+  var,
   survey,
   choices = NULL,
   group = NULL,
+  group_key_sep = "*",
   label_survey = TRUE,
   na_rm = TRUE,
-  stat_name = "prop",
   vartype = "ci",
   level = 0.95
 )
@@ -20,7 +20,7 @@ proportion_select_one(
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{col}{A column to calculate proportion from.}
+\item{var}{A variable to calculate proportion from.}
 
 \item{survey}{The survey sheet from Kobo (with column "type" split). See \code{split_survey()}.}
 
@@ -28,11 +28,11 @@ proportion_select_one(
 
 \item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
 
-\item{label_survey}{Boolean. Retrieve questions label from the survey sheet? Default to TRUE.}
+\item{group_key_sep}{A character string to separate grouping column names in a fancy 'group_key' column.}
 
-\item{na_rm}{Should NAs from \code{col} be removed? Default to TRUE.}
+\item{label_survey}{Boolean. Retrieve var's label from the survey sheet? Default to TRUE.}
 
-\item{stat_name}{What should the statistic's column be named? Default to "prop".}
+\item{na_rm}{Should NAs from \code{var} be removed? Default to TRUE.}
 
 \item{vartype}{Report variability as one or more of: standard error ("se", default),
 confidence interval ("ci"), variance ("var") or coefficient of variation

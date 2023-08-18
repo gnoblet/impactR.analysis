@@ -9,6 +9,7 @@ proportion_all_select_one(
   survey,
   choices = NULL,
   group = NULL,
+  group_key_sep = "*",
   label_survey = TRUE,
   na_rm = TRUE,
   vartype = "ci",
@@ -24,9 +25,11 @@ proportion_all_select_one(
 
 \item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
 
+\item{group_key_sep}{A character string to separate grouping column names in a fancy 'group_key' column.}
+
 \item{label_survey}{Boolean. Retrieve questions label from the survey sheet? Default to TRUE.}
 
-\item{na_rm}{Should NAs from \code{col} be removed? Default to TRUE.}
+\item{na_rm}{Should NAs from \code{var} be removed? Default to TRUE.}
 
 \item{vartype}{Report variability as one or more of: standard error ("se", default),
 confidence interval ("ci"), variance ("var") or coefficient of variation

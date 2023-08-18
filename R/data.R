@@ -23,3 +23,10 @@
 #'
 #' @format A data frame with 55 rows and 7 variables
 "choices"
+
+#' Some composite indicators to compute LSG scores and MSNI score
+#'
+#' A dataset with score for non-critical and critical indicators for each sector.
+#'
+#' @format A data frame with 10000 rows and 7 variables
+"msni"

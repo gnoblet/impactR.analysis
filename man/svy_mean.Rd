@@ -6,7 +6,7 @@
 \usage{
 svy_mean(
   design,
-  col,
+  var,
   group = NULL,
   group_key_sep = "*",
   na_rm = TRUE,
@@ -19,13 +19,13 @@ svy_mean(
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{col}{A column to calculate mean from.}
+\item{var}{A variable to calculate the mean from.}
 
 \item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
 
 \item{group_key_sep}{A character string to separate grouping column names in a fancy 'group_key' column.}
 
-\item{na_rm}{Should NAs from \code{col} be removed? Default to TRUE.}
+\item{na_rm}{Should NAs from \code{var} be removed? Default to TRUE.}
 
 \item{stat_name}{What should the statistic's column be named? Default to "mean".}
 
@@ -49,6 +49,7 @@ Other survey analysis functions:
 \code{\link{svy_interact}()},
 \code{\link{svy_median}()},
 \code{\link{svy_prop}()},
+\code{\link{svy_quantile}()},
 \code{\link{svy_ratio}()}
 }
 \concept{survey analysis functions}

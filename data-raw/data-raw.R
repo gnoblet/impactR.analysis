@@ -3,9 +3,6 @@
 #
 # #------ Prepare data
 
-# Data must have been imported with `ìmport_xlsx()` or `import_csv()` or some other way. Yet column names for multiple choices must follow this pattern "variable_choice1", with an underscore between the variable name from the survey sheet and the choices from the choices sheet. For instance, for the main drinking water source (if multiple choice), it could be "w_water_source_surface_water" or "w_water_source_stand_pipe".
-# Data must have been imported with `ìmport_xlsx()` or `import_csv()` or with `janitor::clean_names()`. This is to ensure that column names for multiple choices follow this pattern: "variable_choice1", with an underscore between the variable name from the survey sheet and the choices from the choices sheet. For instance, for the main drinking water source (if multiple choice), it could be "w_water_source_surface_water" or "w_water_source_stand_pipe".
-
 vars <- c(
   # Unique id survey
   "uuid",
@@ -85,3 +82,37 @@ usethis::use_data(main, overwrite = TRUE)
 usethis::use_data(survey, overwrite = TRUE)
 usethis::use_data(choices, overwrite = TRUE)
 usethis::use_data(design, overwrite = TRUE)
+
+
+
+# ## code to prepare `DATASET` dataset goes here
+#
+#
+# #------ Prepare data
+msni <- data.frame(
+  uuid = paste0("x_", 1:10000),
+  health_crit_1 = sample(c(1:3, NA_integer_), 10000, replace = TRUE),
+  health_noncrit_1 = sample(c(0:1, NA_integer_), 10000, replace = TRUE),
+  health_noncrit_2 = sample(0:1, 10000, replace = TRUE),
+  health_noncrit_3 = sample(0:1, 10000, replace = TRUE),
+  fs_crit_1 = sample(c(1:5, NA_integer_), 10000, replace = TRUE),
+  liv_crit_1 = sample(1:4, 10000, replace = TRUE),
+  liv_crit_2 = sample(1:4, 10000, replace = TRUE),
+  liv_crit_3 = sample(1:3, 10000, replace = TRUE),
+  liv_crit_4 = sample(c(1:4, NA_integer_), 10000, replace = TRUE),
+  liv_noncrit_1 = sample(c(0:1, NA_integer_), 10000, replace = TRUE),
+  wash_crit_1 = sample(1:5, 10000, replace = TRUE),
+  wash_crit_2 = sample(c(1:5, NA_integer_), 10000, replace = TRUE),
+  wash_crit_3 = sample(1:5, 10000, replace = TRUE),
+  wash_crit_4 = sample(c(1:2, NA_integer_), 10000, replace = TRUE),
+  educ_crit_1 = sample(c(1,3,4, NA_integer_), 10000, replace = TRUE),
+  educ_crit_2 = sample(c(1,2,4), 10000, replace = TRUE),
+  educ_noncrit_1 = sample(c(0:1, NA_integer_), 10000, replace = TRUE),
+  educ_noncrit_2 = sample(0:1, 10000, replace = TRUE),
+  educ_noncrit_3 = sample(0:1, 10000, replace = TRUE),
+  shelter_crit_1 = sample(c(1,2,3, 5, NA_integer_), 10000, replace = TRUE),
+  prot_crit_1 = sample(c(1:4, NA_integer_), 10000, replace = TRUE),
+  prot_crit_2 = sample(c(1, 3, 4), 10000, replace = TRUE)
+)
+
+usethis::use_data(msni, overwrite = TRUE)

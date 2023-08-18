@@ -12,7 +12,6 @@ svy_interact(
   group_key_sep = "*",
   unnest_interaction = TRUE,
   na_rm = TRUE,
-  stat_name = "prop_interact",
   vartype = "ci",
   level = 0.95,
   ...
@@ -21,7 +20,7 @@ svy_interact(
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{interact}{A quoted vector of columns to calculate interactions from (must be quoted).}
+\item{interact}{A quoted vector of variables to calculate interactions from (must be quoted).}
 
 \item{interact_key_sep}{A character string to separate interactions columns in a fancy 'interact_key" column.}
 
@@ -31,9 +30,7 @@ svy_interact(
 
 \item{unnest_interaction}{Should interaction be unnested? Default to TRUE.}
 
-\item{na_rm}{Should NAs from \code{col} be removed? Default to TRUE.}
-
-\item{stat_name}{What should the statistic's column be named? Default to "prop".}
+\item{na_rm}{Should NAs from \code{interact} be removed? Default to TRUE.}
 
 \item{vartype}{Report variability as one or more of: standard error ("se", default),
 confidence interval ("ci"), variance ("var") or coefficient of variation
@@ -55,6 +52,7 @@ Other survey analysis functions:
 \code{\link{svy_mean}()},
 \code{\link{svy_median}()},
 \code{\link{svy_prop}()},
+\code{\link{svy_quantile}()},
 \code{\link{svy_ratio}()}
 }
 \concept{survey analysis functions}

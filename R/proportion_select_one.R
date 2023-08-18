@@ -16,7 +16,7 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-proportion_select_one <- function(design, var, survey, choices = NULL, group = NULL, group_key_sep = "*", label_survey = TRUE, na_rm = TRUE, stat_name = "prop", vartype = "ci", level = 0.95){
+proportion_select_one <- function(design, var, survey, choices = NULL, group = NULL, group_key_sep = "*", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
 
   #------ Gather arguments
@@ -50,7 +50,7 @@ proportion_select_one <- function(design, var, survey, choices = NULL, group = N
     ))
 
   # Calculate proportion
-  proportion <- svy_prop(design, {{ var }}, group =  group, vartype = vartype, level = level, stat_name = stat_name, na_rm = na_rm)
+  proportion <- svy_prop(design, {{ var }}, group =  group, vartype = vartype, level = level, na_rm = na_rm)
 
   # Type of analysis is select_multiple
   proportion[["analysis"]] <- "select_one"

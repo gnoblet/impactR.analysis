@@ -6,11 +6,10 @@
 \usage{
 svy_median(
   design,
-  col,
+  var,
   group = NULL,
   group_key_sep = "*",
   na_rm = TRUE,
-  stat_name = "median",
   vartype = "ci",
   level = 0.95,
   ...
@@ -19,15 +18,13 @@ svy_median(
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{col}{A column to calculate median from.}
+\item{var}{A variable to calculate median from.}
 
 \item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
 
 \item{group_key_sep}{A character string to separate grouping column names in a fancy 'group_key' column.}
 
-\item{na_rm}{Should NAs from \code{col} be removed? Default to TRUE.}
-
-\item{stat_name}{What should the statistic's column be named? Default to "median".}
+\item{na_rm}{Should NAs from \code{var} be removed? Default to TRUE.}
 
 \item{vartype}{NULL to report no variability. Otherwise one or more of: standard error ("se", the default),
 confidence interval ("ci"), variance ("var") or coefficient of variation
@@ -48,6 +45,7 @@ Other survey analysis functions:
 \code{\link{svy_interact}()},
 \code{\link{svy_mean}()},
 \code{\link{svy_prop}()},
+\code{\link{svy_quantile}()},
 \code{\link{svy_ratio}()}
 }
 \concept{survey analysis functions}
