@@ -45,7 +45,7 @@ proportion_select_one <- function(design, var, survey, choices = NULL, group = N
 
   # select_multiples that exists in design
   if (!(var_name %in% select_ones)) rlang::abort(
-    c("Variable is not a select_multiple in survey.",
+    c("Variable is not a select_one in survey.",
       "i" = glue::glue("You may check that column '{var_name}' is a `select_one` question. Maybe verify that the survey sheet is the right and most updated version.")
     ))
 
