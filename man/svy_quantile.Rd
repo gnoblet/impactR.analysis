@@ -6,7 +6,7 @@
 \usage{
 svy_quantile(
   design,
-  var,
+  vars,
   quantiles = c(0.25, 0.5, 0.75),
   group = NULL,
   group_key_sep = "*",
@@ -19,7 +19,7 @@ svy_quantile(
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{var}{A variable to calculate quantile from.}
+\item{vars}{A quoted vector of variables to calculate quantile from.}
 
 \item{quantiles}{A vector of quantiles to calculate}
 

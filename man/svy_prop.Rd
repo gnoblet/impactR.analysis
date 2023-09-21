@@ -6,7 +6,7 @@
 \usage{
 svy_prop(
   design,
-  var,
+  vars,
   group = NULL,
   group_key_sep = "*",
   na_rm = TRUE,
@@ -18,7 +18,7 @@ svy_prop(
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{var}{A variable to calculate proportion from.}
+\item{vars}{A quoted vector of variables to calculate proportion from.}
 
 \item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
 

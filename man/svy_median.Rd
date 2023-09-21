@@ -6,7 +6,7 @@
 \usage{
 svy_median(
   design,
-  var,
+  vars,
   group = NULL,
   group_key_sep = "*",
   na_rm = TRUE,
@@ -18,7 +18,7 @@ svy_median(
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{var}{A variable to calculate median from.}
+\item{vars}{A variable to calculate median from.}
 
 \item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
 
