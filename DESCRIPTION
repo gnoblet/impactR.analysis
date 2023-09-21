@@ -1,6 +1,6 @@
 Package: impactR.analysis
-Title: Analyzing survey data collected with Kobo
-Version: 0.0.0.9000
+Title: Analyzing survey data (collected with Kobo)
+Version: 0.0.1
 Authors@R: 
      c(
         person(
