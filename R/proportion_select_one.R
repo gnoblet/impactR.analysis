@@ -50,7 +50,7 @@ proportion_select_one <- function(design, var, survey, choices = NULL, group = N
     ))
 
   # Calculate proportion
-  proportion <- svy_prop(design, {{ var }}, group =  group, vartype = vartype, level = level, na_rm = na_rm)
+  proportion <- svy_prop(design, !!rlang::sym(var), group =  group, vartype = vartype, level = level, na_rm = na_rm)
 
   # Type of analysis is select_multiple
   proportion[["analysis"]] <- "select_one"
