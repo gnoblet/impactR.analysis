@@ -43,6 +43,8 @@ Survey proportion
 }
 \seealso{
 Other survey analysis functions: 
+\code{\link{auto_svy_analysis}()},
+\code{\link{svy_analysis}()},
 \code{\link{svy_interact}()},
 \code{\link{svy_mean}()},
 \code{\link{svy_median}()},

@@ -103,7 +103,12 @@ svy_prop <- function(design, vars, group = NULL, group_key_sep = "*", na_rm = TR
 
   analysis <- purrr::map(
     vars,
-    \(x) make_prop(design, x, group = group, group_key = group_key, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ...)
+    \(x) {
+
+      an <- make_prop(design, x, group = group, group_key = group_key, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ...)
+
+      an <- dplyr::mutate(an, "var_value" := as.character(!!rlang::sym("var_value")))
+    }
   )
 
   analysis <- purrr::list_rbind(analysis)

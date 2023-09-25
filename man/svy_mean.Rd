@@ -10,7 +10,6 @@ svy_mean(
   group = NULL,
   group_key_sep = "*",
   na_rm = TRUE,
-  stat_name = "mean",
   vartype = "ci",
   level = 0.95,
   ...
@@ -26,8 +25,6 @@ svy_mean(
 \item{group_key_sep}{A character string to separate grouping column names in a fancy 'group_key' column.}
 
 \item{na_rm}{Should NAs from \code{var} be removed? Default to TRUE.}
-
-\item{stat_name}{What should the statistic's column be named? Default to "mean".}
 
 \item{vartype}{Report variability as one or more of: standard error ("se", default),
 confidence interval ("ci"), variance ("var") or coefficient of variation
@@ -46,6 +43,8 @@ Survey mean
 }
 \seealso{
 Other survey analysis functions: 
+\code{\link{auto_svy_analysis}()},
+\code{\link{svy_analysis}()},
 \code{\link{svy_interact}()},
 \code{\link{svy_median}()},
 \code{\link{svy_prop}()},

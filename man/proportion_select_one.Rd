@@ -6,7 +6,7 @@
 \usage{
 proportion_select_one(
   design,
-  var,
+  vars,
   survey,
   choices = NULL,
   group = NULL,
@@ -20,7 +20,7 @@ proportion_select_one(
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{var}{A variable to calculate proportion from.}
+\item{vars}{Variables to calculate proportion from.}
 
 \item{survey}{The survey sheet from Kobo (with column "type" split). See \code{split_survey()}.}
 

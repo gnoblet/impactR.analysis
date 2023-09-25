@@ -6,8 +6,8 @@
 \usage{
 svy_ratio(
   design,
-  num,
-  denom,
+  nums,
+  denoms,
   ratio_key_sep = " / ",
   group = NULL,
   group_key_sep = "*",
@@ -20,9 +20,9 @@ svy_ratio(
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{num}{The numerator variable.}
+\item{nums}{The numerator variables.}
 
-\item{denom}{The denominator variable.}
+\item{denoms}{The denominator variables.}
 
 \item{ratio_key_sep}{A separator for the ratio key.}
 
@@ -48,6 +48,8 @@ Survey ratio
 }
 \seealso{
 Other survey analysis functions: 
+\code{\link{auto_svy_analysis}()},
+\code{\link{svy_analysis}()},
 \code{\link{svy_interact}()},
 \code{\link{svy_mean}()},
 \code{\link{svy_median}()},

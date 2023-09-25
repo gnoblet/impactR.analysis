@@ -5,7 +5,6 @@
 #' @param group A quoted vector of columns to group by. Default to NULL for no group.
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
 #' @param na_rm Should NAs from `var` be removed? Default to TRUE.
-#' @param stat_name What should the statistic's column be named? Default to "mean".
 #' @param ... Other parameters to pass to `srvyr::survey_mean()`.
 #'
 #' @inheritParams srvyr::survey_mean
@@ -17,7 +16,7 @@
 #' @return A survey-summarized-mean data frame
 #'
 #' @export
-svy_mean <- function(design, vars, group = NULL, group_key_sep = "*", na_rm = TRUE, stat_name = "mean", vartype = "ci", level = 0.95, ...){
+svy_mean <- function(design, vars, group = NULL, group_key_sep = "*", na_rm = TRUE, vartype = "ci", level = 0.95, ...){
 
   #------ Gather arguments
 

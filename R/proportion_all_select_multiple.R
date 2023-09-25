@@ -17,7 +17,7 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-proportion_all_select_multiple <- function(design, survey, choices, group = NULL, group_key_sep = "*", choices_sep = "_", label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, stat_name = "prop", vartype = "ci", level = 0.95){
+proportion_all_select_multiple <- function(design, survey, choices, group = NULL, group_key_sep = "*", choices_sep = "_", label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
   select_multiples <- impactR.kobo::get_survey_select_multiple(survey)
 
