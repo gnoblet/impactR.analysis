@@ -22,13 +22,7 @@ proportion_all_select_one <- function(design, survey, choices = NULL, group = NU
   # select_ones that are not grouping columns
   select_ones <- select_ones[!(select_ones %in% group)]
 
-  proportions <- purrr::map(select_ones, \(x) {
-    prop <- proportion_select_one(design = design, var = {{ x }}, survey = survey, choices = choices, group =  group, label_survey = label_survey, na_rm = na_rm, vartype = vartype, level = level)
-
-    prop <- dplyr::mutate(prop, "var_value" := as.character(!!rlang::sym("var_value")))
-    })
-
-  proportions <- purrr::list_rbind(proportions)
+  proportions <- proportion_select_one(design = design, vars = select_ones, survey = survey, choices = choices, group =  group, label_survey = label_survey, na_rm = na_rm, vartype = vartype, level = level)
 
   return(proportions)
 

@@ -74,11 +74,23 @@ add_interact_key <- function(df, interact, interact_key, interact_key_sep, befor
   return(df)
 }
 
+# Check if cols are integers
+are_cols_type <- function(df, cols, type){
+
+  # Check that vectors are types (to enforce values and check consistency)
+  is_type <- sapply(df[cols], typeof) %in% type
+
+  if(!all(is_type)) rlang::abort(c(
+    paste0("Non-critical indicators must be of type ", type),
+    "i" = glue::glue("This or these columns are not of type 'integer': ", paste(cols[!is_type], collapse = ", "), ".")
+  ))
+}
+
 
 # Check if cols are integers
 are_cols_integers <- function(df, cols){
 
-  # Check that vectors are integers (to enforce values and check consistancy)
+  # Check that vectors are integers (to enforce values and check consistency)
   is_integer <- sapply(df[cols], typeof) %in% "integer"
 
   if(!all(is_integer)) rlang::abort(c(

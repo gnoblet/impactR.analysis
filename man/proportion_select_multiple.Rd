@@ -15,7 +15,6 @@ proportion_select_multiple(
   label_survey = TRUE,
   label_choices = TRUE,
   na_rm = TRUE,
-  stat_name = "prop",
   vartype = "ci",
   level = 0.95
 )
@@ -40,8 +39,6 @@ proportion_select_multiple(
 \item{label_choices}{Boolean. Retrieve choices label from the choices sheet? Default to TRUE.}
 
 \item{na_rm}{Should NAs from \code{var} be removed? Default to TRUE.}
-
-\item{stat_name}{What should the statistic's column be named? Default to "mean".}
 
 \item{vartype}{Report variability as one or more of: standard error ("se", default),
 confidence interval ("ci"), variance ("var") or coefficient of variation

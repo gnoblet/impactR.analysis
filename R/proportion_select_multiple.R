@@ -18,7 +18,7 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-proportion_select_multiple <- function(design, var, survey, choices, choices_sep = "_", group = NULL, group_key_sep = "*", label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, stat_name = "prop", vartype = "ci", level = 0.95){
+proportion_select_multiple <- function(design, var, survey, choices, choices_sep = "_", group = NULL, group_key_sep = "*", label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
   # Get column name
   var_name <- rlang::as_name(rlang::enquo(var))
@@ -66,7 +66,7 @@ proportion_select_multiple <- function(design, var, survey, choices, choices_sep
   proportions <- purrr::map2(select_multiple_child_in_design, labels[["name"]], \(x,y) {
 
     # Get proportion per choice
-    proportion <- svy_mean(design, var = !!rlang::sym(x), group = group, group_key_sep = group_key_sep, stat_name = "prop", vartype = vartype, na_rm = na_rm, level = level)
+    proportion <- svy_mean(design, vars = !!rlang::sym(x), group = group, group_key_sep = group_key_sep, vartype = vartype, na_rm = na_rm, level = level)
 
     # Remove the overall name and replace by child choices only
     proportion <- impactR.utils::deselect(proportion, "var")
