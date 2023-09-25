@@ -21,7 +21,7 @@ proportion_all_select_multiple <- function(design, survey, choices, group = NULL
 
   select_multiples <- impactR.kobo::get_survey_select_multiple(survey)
 
-  proportions <- purrr::map(select_multiples, \(x) proportion_select_multiple(design, var = {{ x }}, survey = survey, choices = choices, group =  group, group_key_sep = group_key_sep, label_survey = label_survey, label_choices = label_choices, na_rm = na_rm, vartype = vartype, level = level))
+  proportions <- purrr::map(select_multiples, \(x) proportion_select_multiple(design, var = !!rlang::sym(x), survey = survey, choices = choices, group =  group, group_key_sep = group_key_sep, label_survey = label_survey, label_choices = label_choices, na_rm = na_rm, vartype = vartype, level = level))
 
   proportions <- purrr::list_rbind(proportions)
 
