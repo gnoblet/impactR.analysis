@@ -9,13 +9,17 @@ svy_analysis(
   analysis,
   vars,
   group = NULL,
-  group_key_sep = "*",
+  group_key_sep = " ~/~ ",
   na_rm = TRUE,
   vartype = "ci",
   level = 0.95,
-  ratio_key_sep = " / ",
-  interact_key_sep = "*",
+  ratio_key_sep = " ~/~ ",
+  interact_key_sep = " ~/~ ",
   quantiles = c(0.25, 0.5, 0.75),
+  ak = TRUE,
+  ak_overall_sep = " @/@ ",
+  ak_main_sep = " ~/~",
+  ak_var_to_value_sep = " \%/\% ",
   ...
 )
 }
@@ -43,6 +47,14 @@ confidence interval ("ci"), variance ("var") or coefficient of variation
 \item{interact_key_sep}{A character string to separate interactions columns in a fancy 'interact_key" column.}
 
 \item{quantiles}{A vector of quantiles to calculate}
+
+\item{ak}{Boolean. Add the analysis key?}
+
+\item{ak_overall_sep}{The overall separator between items, e.g. between the type of analysis and the variables information.}
+
+\item{ak_main_sep}{The main separator between variables, e.g. between the two grouping columns.}
+
+\item{ak_var_to_value_sep}{The separator between the variable and its value.}
 
 \item{...}{Other parameters to pass to the used \code{srvyr} method.}
 }

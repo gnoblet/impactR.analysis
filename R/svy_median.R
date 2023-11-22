@@ -5,6 +5,10 @@
 #' @param group A quoted vector of columns to group by. Default to NULL for no group.
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
 #' @param na_rm Should NAs from `var` be removed? Default to TRUE.
+#' @param ak Boolean. Add the analysis key?
+#' @param ak_overall_sep The overall separator between items, e.g. between the type of analysis and the variables information.
+#' @param ak_main_sep The main separator between variables, e.g. between the two grouping columns.
+#' @param ak_var_to_value_sep The separator between the variable and its value.
 #' @param ... Other parameters to pass to `srvyr::survey_median()`.
 #'
 #' @inheritParams srvyr::survey_median
@@ -16,7 +20,7 @@
 #' @return A survey-summarized-median data frame
 #'
 #' @export
-svy_median <- function(design, vars, group = NULL,  group_key_sep = "*", na_rm = TRUE, vartype = "ci", level = 0.95, ...){
+svy_median <- function(design, vars, group = NULL,  group_key_sep = " ~/~ ", na_rm = TRUE, vartype = "ci", level = 0.95, ak = TRUE, ak_overall_sep = " @/@ ", ak_main_sep = " ~/~ ", ak_var_to_value_sep = " %/% ", ...){
 
   #------ Gather arguments
 
@@ -70,7 +74,7 @@ svy_median <- function(design, vars, group = NULL,  group_key_sep = "*", na_rm =
     to_return[["stat_type"]] <- "median"
 
     # Regroup by group to calculate unweighted total by groups
-    to_return <- dplyr::group_by(to_return, dplyr::across({{ group }}))
+    to_return <- dplyr::group_by(to_return, dplyr::across(dplyr::all_of({{ group }})))
 
     # Get unweighted total
     to_return <- dplyr::mutate(to_return, "n_tot_unw" := !!rlang::sym("n_unw"))
@@ -92,6 +96,7 @@ svy_median <- function(design, vars, group = NULL,  group_key_sep = "*", na_rm =
 
     # Get the group keys and values
     if (group_key != "") {to_return <- add_group_key(to_return, group, group_key, group_key_sep, before = "var")}
+    if (group_key == "") {to_return <- dplyr::mutate(to_return, group_key = NA_character_, group_key_value = NA_character_, .before = "var")}
 
     return(to_return)
   }
@@ -103,6 +108,11 @@ svy_median <- function(design, vars, group = NULL,  group_key_sep = "*", na_rm =
   )
 
   analysis <- purrr::list_rbind(analysis)
+
+  analysis <- dplyr::mutate(analysis, var_value = NA_character_, .after = "var")
+
+  # Add the analysis key
+  if(ak) analysis <- add_analysis_key(analysis, group_key_sep = group_key_sep, overall_sep = ak_overall_sep, main_sep =  ak_main_sep, var_to_value_sep = ak_var_to_value_sep)
 
   return(analysis)
 

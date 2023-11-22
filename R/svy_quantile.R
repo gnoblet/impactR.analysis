@@ -16,7 +16,7 @@
 #' @return A survey-summarized-mean data frame
 #'
 #' @export
-svy_quantile <- function(design, vars, quantiles = c(0.25, 0.5, 0.75), group = NULL, group_key_sep = "*", na_rm = TRUE, vartype = "ci", level = 0.95, ...){
+svy_quantile <- function(design, vars, quantiles = c(0.25, 0.5, 0.75), group = NULL, group_key_sep = " ~/~ ", na_rm = TRUE, vartype = "ci", level = 0.95, ...){
 
 
   #------ Gather arguments
@@ -93,6 +93,7 @@ svy_quantile <- function(design, vars, quantiles = c(0.25, 0.5, 0.75), group = N
       .before = dplyr::everything())
 
     if (group_key != "") {to_return <- add_group_key(to_return, group, group_key, group_key_sep, before = "var")}
+    if (group_key == "") {to_return <- dplyr::mutate(to_return, group_key = NA_character_, group_key_value = NA_character_, .before = "var")}
 
     return(to_return)
   }

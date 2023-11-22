@@ -27,7 +27,7 @@
 #'
 #' @export
 #'
-svy_analysis <- function(design, analysis, vars, group = NULL, group_key_sep = "*", na_rm = TRUE, vartype = "ci", level = 0.95, ratio_key_sep = " / ",  interact_key_sep = "*", quantiles = c(0.25, 0.5, 0.75), ...){
+svy_analysis <- function(design, analysis, vars, group = NULL, group_key_sep = " ~/~ ", na_rm = TRUE, vartype = "ci", level = 0.95, ratio_key_sep = " ~/~ ",  interact_key_sep = " ~/~ ", quantiles = c(0.25, 0.5, 0.75), ak = TRUE, ak_overall_sep = " @/@ ", ak_main_sep = " ~/~", ak_var_to_value_sep = " %/% ", ...){
 
 
   analysis_type <- c("mean", "median", "prop", "quantile", "ratio", "interact")
@@ -36,29 +36,31 @@ svy_analysis <- function(design, analysis, vars, group = NULL, group_key_sep = "
 
   if (analysis == "mean") {
 
-    an <- svy_mean(design, vars, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ...)
+    an <- svy_mean(design, vars, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ak = ak, ak_overall_sep = ak_overall_sep, ak_main_sep = ak_main_sep, ak_var_to_value_sep = ak_var_to_value_sep, ...)
 
   } else if (analysis == "median") {
 
-    an <- svy_mean(design, vars, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ...)
+    an <- svy_mean(design, vars, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ak = ak, ak_overall_sep = ak_overall_sep, ak_main_sep = ak_main_sep, ak_var_to_value_sep = ak_var_to_value_sep,...)
 
   } else if (analysis == "prop") {
 
-    an <- svy_prop(design, vars, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ...)
+    an <- svy_prop(design, vars, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ak = ak, ak_overall_sep = ak_overall_sep, ak_main_sep = ak_main_sep, ak_var_to_value_sep = ak_var_to_value_sep,...)
 
   } else if (analysis == "ratio") {
 
     nums <- names(vars)
     denoms <- unname(vars)
-    an <- svy_ratio(design, nums = nums, denoms = denoms, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ...)
+    an <- svy_ratio(design, nums = nums, denoms = denoms, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ak = ak, ak_overall_sep = ak_overall_sep, ak_main_sep = ak_main_sep, ak_var_to_value_sep = ak_var_to_value_sep,...)
 
   } else if (analysis == "interact") {
 
-    an <- svy_interact(design, interact = vars, interact_key_sep = interact_key_sep, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ...)
+    an <- svy_interact(design, interact = vars, interact_key_sep = interact_key_sep, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ak = ak, ak_overall_sep = ak_overall_sep, ak_main_sep = ak_main_sep, ak_var_to_value_sep = ak_var_to_value_sep,...)
 
   } else if (analysis == "quantile") {
 
-    an <- svy_quantile(design, vars = vars, quantiles = quantiles, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ...)
+    an <- svy_quantile(design, vars = vars, quantiles = quantiles, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level,...)
+
+    if (ak) rlang::warn("The analysis key has not been implemented for 'quantile'.")
 
   }  else {
     rlang::abort(paste0("Analysis ", analysis, "is not implemented yet... or will not. Feel free to reach out"))

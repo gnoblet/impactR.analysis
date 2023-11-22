@@ -7,6 +7,10 @@
 #' @param group A quoted vector of columns to group by. Default to NULL for no group.
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
 #' @param na_rm Boolean. Remove any line that as an NA in `num` or `denom` Default to TRUE.
+#' @param ak Boolean. Add the analysis key?
+#' @param ak_overall_sep The overall separator between items, e.g. between the type of analysis and the variables information.
+#' @param ak_main_sep The main separator between variables, e.g. between the two grouping columns.
+#' @param ak_var_to_value_sep The separator between the variable and its value.
 #' @param ... Parameters to pass to `srvyr::survey_ratio()`.
 #'
 #' @importFrom rlang `:=`
@@ -18,7 +22,7 @@
 #' @return A survey-summarized-ratio data frame
 #'
 #' @export
-svy_ratio <- function(design, nums, denoms, ratio_key_sep = " / ", group = NULL, group_key_sep = "*", na_rm = TRUE, vartype = "ci", level = 0.95, ...){
+svy_ratio <- function(design, nums, denoms, ratio_key_sep = " ~/~ ", group = NULL, group_key_sep = " ~/~ ", na_rm = TRUE, vartype = "ci", level = 0.95, ak = TRUE, ak_overall_sep = " @/@ ", ak_main_sep = " ~/~ ", ak_var_to_value_sep = " %/% ", ...){
 
   #------ Gather arguments
 
@@ -102,6 +106,7 @@ svy_ratio <- function(design, nums, denoms, ratio_key_sep = " / ", group = NULL,
 
     # Get the group keys and values
     if (group_key != "") {to_return <- add_group_key(to_return, group, group_key, group_key_sep, before = "var")}
+    if (group_key == "") {to_return <- dplyr::mutate(to_return, group_key = NA_character_, group_key_value = NA_character_, .before = "var")}
 
     return(to_return)
   }
@@ -113,6 +118,11 @@ svy_ratio <- function(design, nums, denoms, ratio_key_sep = " / ", group = NULL,
   )
 
   analysis <- purrr::list_rbind(analysis)
+
+  analysis <- dplyr::mutate(analysis, var_value = NA_character_, .after = "var")
+
+  # Add the analysis key
+  if(ak) analysis <- add_analysis_key(analysis, group_key_sep = group_key_sep, var_key_sep = ratio_key_sep, overall_sep = ak_overall_sep, main_sep =  ak_main_sep, var_to_value_sep = ak_var_to_value_sep)
 
 
   return(analysis)
