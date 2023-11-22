@@ -1,12 +1,12 @@
-#' @title Stop statement "If not in colnames"
-#'
-#' @param df A dataframe.
-#' @param cols A vector of column names (quoted).
-#' @param df_name Provide the tibble name as a character string.
-#' @param arg Default to NULL.
-#'
-#' @return A stop statement.
-#'
+# @title Stop statement "If not in colnames"
+#
+# @param df A dataframe.
+# @param cols A vector of column names (quoted).
+# @param df_name Provide the tibble name as a character string.
+# @param arg Default to NULL.
+#
+# @return A stop statement.
+#
 if_not_in_stop <- function(df, cols, df_name, arg = NULL){
 
   missing_cols <- impactR.utils::subvec_not_in(cols, colnames(df))
@@ -74,6 +74,9 @@ add_interact_key <- function(df, interact, interact_key, interact_key_sep, befor
   return(df)
 }
 
+
+
+
 # Check if cols are integers
 are_cols_type <- function(df, cols, type){
 
@@ -87,6 +90,8 @@ are_cols_type <- function(df, cols, type){
 }
 
 
+
+
 # Check if cols are integers
 are_cols_integers <- function(df, cols){
 
@@ -98,6 +103,8 @@ are_cols_integers <- function(df, cols){
     "i" = glue::glue("This or these columns are not of type 'integer': ", paste(cols[!is_integer], collapse = ", "), ".")
   ))
 }
+
+
 
 
 # Check if value are not in set
@@ -130,3 +137,49 @@ are_in_set <- function(df, cols, set, main_message){
 }
 
 
+# Adds the analysis key to the results table from a svy_*() function
+add_analysis_key <- function(results, group_key_name = "group_key", group_key_value_name = "group_key_value", group_key_sep = " ~/~ ", var_name = "var", var_value_name = "var_value", var_key_sep = " ~/~ ",  overall_sep = " @/@ ", main_sep =  " ~/~ ", var_to_value_sep = " %/% ") {
+
+
+  # Extract group values
+  x <- stringr::str_split(results[[group_key_name]], group_key_sep)
+  y <- stringr::str_split(results[[group_key_value_name]], group_key_sep)
+
+  to_add_group <- purrr::map2(
+    x,
+    y,
+    function(x, y) {
+      paste(x, y, sep = var_to_value_sep)
+    })
+
+  to_add_group <- purrr::map_chr(to_add_group, stringr::str_c, collapse = main_sep)
+
+
+  # Extract var values
+  x <- stringr::str_split(results[[var_name]], var_key_sep)
+  y <- stringr::str_split(results[[var_value_name]], var_key_sep)
+
+  to_add_var<- purrr::map2(
+    x,
+    y,
+    function(x, y) {
+      paste(x, y, sep = var_to_value_sep)
+    })
+
+  to_add_var <- purrr::map_chr(to_add_var, stringr::str_c, collapse = main_sep)
+
+
+  # Final mutate
+  results <- dplyr::mutate(
+    results,
+    analysis_key = paste0(
+      !!rlang::sym("stat_type"),
+      overall_sep,
+      to_add_var,
+      overall_sep,
+      to_add_group
+    )
+  )
+
+  return(results)
+}

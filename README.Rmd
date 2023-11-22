@@ -52,7 +52,7 @@ svy_prop(design, vars = c("h_2_type_latrine", "admin1"), group = "milieu")
 # % of HHs attending public schools with the dummy variable
 svy_mean(design, vars = "e_typ_ecole_publique")
 # Median of the # of female age 3-17 yo
-svu_median(design, vars = "c_total_3_17_femmes")
+svy_median(design, vars = "c_total_3_17_femmes")
 
 # Interaction between variables (e.g. for needs profiles)
 # Does it mean something here?
@@ -60,7 +60,7 @@ svy_interact(design, c("h_2_type_latrine", "e_typ_ecole_publique"))
 
 # there is also svy_quantile() and svy_ratio()
 # and two svy_test_*() functions
-svy_quantile(design, vars = "f_5_depenses_ba", "e_typ_ecole_publique"))
+svy_quantile(design, vars = c("f_5_depenses_ba", "e_typ_ecole_publique"))
 svy_ratio(design, nums = c("e_typ_ecole_publique", "e_typ_ecole_publique"), denoms = c("e_typ_ecole_non_publique", "e_typ_ecole_publique"))
 
 ```

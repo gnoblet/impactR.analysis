@@ -1,6 +1,6 @@
 Package: impactR.analysis
 Title: Analyzing survey data (collected with Kobo)
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
      c(
         person(
@@ -24,7 +24,8 @@ Imports:
     stats,
     survey,
     rlang,
-    tidyr
+    tidyr,
+    stringr
 Remotes:
   gnoblet/impactR.utils,
   gnoblet/impactR.kobo

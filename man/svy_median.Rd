@@ -8,10 +8,14 @@ svy_median(
   design,
   vars,
   group = NULL,
-  group_key_sep = "*",
+  group_key_sep = " ~/~ ",
   na_rm = TRUE,
   vartype = "ci",
   level = 0.95,
+  ak = TRUE,
+  ak_overall_sep = " @/@ ",
+  ak_main_sep = " ~/~ ",
+  ak_var_to_value_sep = " \%/\% ",
   ...
 )
 }
@@ -31,6 +35,14 @@ confidence interval ("ci"), variance ("var") or coefficient of variation
 ("cv").}
 
 \item{level}{A single number indicating the confidence level (only one level allowed). Note that this may effect estimated standard errors (see \code{\link[survey]{svyquantile}} details on \code{alpha}, which equals \code{1-level}).}
+
+\item{ak}{Boolean. Add the analysis key?}
+
+\item{ak_overall_sep}{The overall separator between items, e.g. between the type of analysis and the variables information.}
+
+\item{ak_main_sep}{The main separator between variables, e.g. between the two grouping columns.}
+
+\item{ak_var_to_value_sep}{The separator between the variable and its value.}
 
 \item{...}{Other parameters to pass to \code{srvyr::survey_median()}.}
 }
