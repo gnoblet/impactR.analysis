@@ -4,9 +4,7 @@ Version: 0.0.2
 Authors@R: 
      c(
         person(
-            'Noblet', 'Guillaume',
-            email = 'gnoblet@zaclys.net',
-            role = c('aut', 'cre')
+            'Noblet', 'Guillaume', 'gnoblet@zaclys.net', role = c('aut', 'cre')
             )
       )
 Description: Providing helpers to support and (quasi-)automate survey data analysis produced with Kobo.
