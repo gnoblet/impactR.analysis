@@ -17,11 +17,11 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-proportion_all_select_multiple <- function(design, survey, choices, group = NULL, group_key_sep = "*", choices_sep = "_", label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
+prop_select_multiple_all <- function(design, survey, choices, group = NULL, group_key_sep = " ~/~ ", choices_sep = "_", label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
   select_multiples <- impactR.kobo::get_survey_select_multiple(survey)
 
-  proportions <- purrr::map(select_multiples, \(x) proportion_select_multiple(design, var = !!rlang::sym(x), survey = survey, choices = choices, group =  group, group_key_sep = group_key_sep, label_survey = label_survey, label_choices = label_choices, na_rm = na_rm, vartype = vartype, level = level))
+  proportions <- purrr::map(select_multiples, \(x) prop_select_multiple(design, var = x, survey = survey, choices = choices, choices_sep = choices_sep, group =  group, group_key_sep = group_key_sep, label_survey = label_survey, label_choices = label_choices, na_rm = na_rm, vartype = vartype, level = level), .progress = TRUE)
 
   proportions <- purrr::list_rbind(proportions)
 

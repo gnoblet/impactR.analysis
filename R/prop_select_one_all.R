@@ -14,15 +14,14 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-proportion_all_select_one <- function(design, survey, choices = NULL, group = NULL, group_key_sep = "*", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
-
+prop_select_one_all <- function(design, survey, choices = NULL, group = NULL, group_key_sep = " ~/~ ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
   select_ones <- impactR.kobo::get_survey_select_one(survey)
 
   # select_ones that are not grouping columns
   select_ones <- select_ones[!(select_ones %in% group)]
 
-  proportions <- proportion_select_one(design = design, vars = select_ones, survey = survey, choices = choices, group =  group, label_survey = label_survey, na_rm = na_rm, vartype = vartype, level = level)
+  proportions <- prop_select_one(design = design, vars = select_ones, survey = survey, choices = choices, group =  group, label_survey = label_survey, na_rm = na_rm, vartype = vartype, level = level)
 
   return(proportions)
 
