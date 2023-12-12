@@ -76,7 +76,7 @@ svy_ratio <- function(design, nums, denoms, ratio_key_sep = " ~/~ ", group = NUL
     # - n_unw: the unweighted count of obs
     to_return <- srvyr::summarize(
       to_return,
-      "stat" := srvyr::survey_ratio(!!rlang::sym(num), !!rlang::sym(denom), ...),
+      "stat" := srvyr::survey_ratio(!!rlang::sym(num), !!rlang::sym(denom), vartype = vartype, ...),
       "stat_unw" := srvyr::unweighted(sum(!!rlang::sym(num)) / sum(!!rlang::sym(denom))),
       "n_unw" := srvyr::unweighted(srvyr::n()))
 
