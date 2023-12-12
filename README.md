@@ -65,7 +65,9 @@ svy_analysis(design,
              vars = c("h_2_type_latrine", "e_typ_ecole"))
 
 # For ratios, provide a named vector of num = denom variables
-svy_analysis(design, analysis = "ratio", c("e_typ_ecole_publique" = "e_typ_ecole_publique", "e_typ_ecole_non_publique" = "e_typ_ecole_publique"))
+svy_analysis(design,
+             analysis = "ratio",
+             vars = c("e_typ_ecole_publique" = "e_typ_ecole_publique", "e_typ_ecole_non_publique" = "e_typ_ecole_publique"))
 
 # Then there is this dirty automated function
 auto_svy_analysis(design)
@@ -78,7 +80,11 @@ auto_svy_analysis(design)
 # With the labels, wonderful "var_label" and "var_value_label"
 # Choices is optional
 # Survey is mandatory
-prop_select_one(design, vars = c("h_2_type_latrine", "admin1"), survey, choices, group = "milieu")
+prop_select_one(design, 
+                vars = c("h_2_type_latrine", "admin1"), 
+                survey, 
+                choices, 
+                group = "milieu")
 
 # For all select ones in the survey sheet
 prop_select_one_all(design, survey, choices)
@@ -88,15 +94,15 @@ prop_select_one_all(design, survey, choices)
 
 This function is deliberately conservative for the following:
 
-- if a choice is present in the ‘survey’ sheet but not in the data, it
-  is removed from the calculation;
-- if a choice exists in the data, but not in the data, it will not be
-  taken into account; for example, if a choice has been added and
+- if a choice exists in the Kobo tool, but not in the dataset, it is
+  removed from the calculation;
+- if a choice exists in the dataset, but not in the Kobo tool, it will
+  not be taken into account; for example, if a choice has been added and
   recoded during cleaning, the Kobo tool must be updated beforehand
   (which goes hand in hand with the good practice of having an
-  up-to-date kobo tool that can be used as a variable dictionary
+  up-to-date Kobo tool that can be used as a dictionary of variables;
 - input a filtered survey sheet with the variables corresponding to the
-  data (main, hh roster, education loop, etc.)
+  data (main, hh roster, education loop, etc.).
 
 ``` r
 # With the labels, note the "choices_sep" argument

@@ -1,0 +1,128 @@
+---
+title: "Survey analysis based on a Kobo tool"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{kobo_analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(impactR.analysis)
+```
+
+This vignette emphasizes how to analyze survey data based on Kobo, leveraging both the `svy_*()` family of functions and a Kobo tool. 
+
+## Proportion for select ones
+
+As of version v0.0.3, `kobo_select_one()` uses only the information present in the dataset, and then retrieve labels from the Kobo tool. It means that it does not provide lines for responses that have not been chosen. 
+
+```{r select-ones, eval = F}
+
+# With the labels, wonderful "var_label" and "var_value_label"
+# Choices is optional
+# Survey is mandatory
+kobo_select_one(design, 
+                vars = c("h_2_type_latrine", "admin1"), 
+                survey, 
+                choices, 
+                group = "milieu")
+
+# For all select ones in the survey sheet
+kobo_select_one_all(design, survey, choices)
+```
+
+## Proportion for select multiples
+
+This function is deliberately conservative for the following:
+
+- if a choice exists in the Kobo tool, but not in the dataset, it is removed from the calculation;
+- if a choice exists in the dataset, but not in the Kobo tool, it will not be taken into account; for example, if a choice has been added and recoded during cleaning, the Kobo tool must be updated beforehand (which goes hand in hand with the good practice of having an up-to-date Kobo tool that can be used as a dictionary of variables;
+- input a filtered survey sheet with the variables corresponding to the data (main, hh roster, education loop, etc.).
+
+```{r select-multiples, eval = F}
+# With the labels, note the "choices_sep" argument
+# that allows for choosing the choice separator in the database
+# either a "/" or "." or a "_" , etc.
+# It still only accepts one variable
+# Arg 'vars' can take a vector of select_multiple variables
+kobo_select_multiple(design, c("e_typ_ecole", "e_typ_ecole"), survey, choices, choices_sep = "_")
+
+# For all select multiples
+kobo_select_multiple_all(design, survey, choices, choices_sep = "_")
+```
+
+## Mean and median for numeric variables (decimal, integer, calculate)
+
+```{r kobo-mean-median, eval = F}
+# Mean for one or several numeric variables
+kobo_mean(design, c("c_total_3_17_femmes", "e_abandont_3a_4a_fille"), survey)
+
+# Median for one or several numeric variables
+kobo_median(design, "f_5_depenses_ba", survey, group = "milieu")
+
+# Do the same for all variables
+kobo_mean_all(design, survey)
+kobo_median_all(design,survey)
+```
+
+## Ratio for numeric variables (decimal, integer, calculate)
+
+```{r kobo-ratio}
+kobo_ratio(design, nums = "e_abandont_3a_4a_fille", denoms = "c_total_3_17_femmes", survey = survey)
+```
+
+
+
+## Quick automation
+
+The `auto_kobo_analysis()` function runs all the above functions but `kobo_ratio()` at once.
+
+While all these functions provide a quick workflow for analyzing survey data, the recommend way is to provide a data analysis plan and use functions `kobo_analysis()` or `kobo_analysis_dap()`, see Vignette: TBC, which allows for finer analyses (e.g. providing ratios, labels of indicators, etc., beyond types as defined in the Kobo tool.)
+
+## Make your own analysis 
+```{r kobo-analysis, eval = F}
+# Calculate a mean
+kobo_analysis(design, analysis = "mean", vars = c("c_total_3_17_femmes", "e_abandont_3a_4a_fille"), survey)
+
+# Calculate a median
+kobo_analysis(design, analysis = "median", vars = "f_5_depenses_ba", survey)
+
+# Calculate a ratio proportion
+kobo_analysis(design, analysis = "ratio", vars = c("e_abandont_3a_4a_fille" = "c_total_3_17_femmes"), survey)
+
+# Calculate a select_one proportion
+kobo_analysis(design, analysis = "select_one", vars = c("h_2_type_latrine", "admin1"), survey, choices, na_rm = F)
+
+# Calculate a select_multiple proportion
+kobo_analysis(design, analysis = "select_multiple", vars = "e_typ_ecole", survey, choices)
+
+```
+
+## Make your own analysis using a data analysis plan
+
+Necessary columns are: `analysis`, `vars`, `na_rm`. Other arguments are to be passed for the whole data analysis plan, e.g. group, level, vartype, etc. If there are other columns, for instance useful for reporting such as the indicator name or the sector, it is kept. The function runs as is:
+
+- separate the dataframe to lists by analysis type
+- map out the analysis for each type
+- bind all
+- left_join the other columns
+
+It should contain only one variable to analyze per row (or in the case of a ratio the two variables to calculate the ratio from separated by a comma).
+
+```{r kobo-analysis-dap}
+# Default
+kobo_analysis_from_dap(design, analysis_dap, survey, choices)
+
+# Grouped and confidence level of 0.99
+kobo_analysis_from_dap(design, analysis_dap, survey, choices, group = "milieu", level = 0.99)
+
+```
+
