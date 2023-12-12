@@ -1,3 +1,8 @@
+# impactR.analysis 0.0.3
+
+* Breaking change and new: the `kobo_*()` family functions make use of the `svy_*()` family and Kobo tools. Previous functions have been renamed and updated `prop_*`.
+* New: `auto_kobo_analysis()` provides a very basic automated analysis, while `kobo_analysis_from_dap()` allows for providing a data analysis plan.
+
 # impactR.analysis 0.0.2
 
 * Breaking change: all `svy_*()` functions now uses non regex key separators if `ak = TRUE`, and this `ak` parameter gives an analysis key. It does not apply to `svy_quantile()` and `svy_test_*()` functions.
