@@ -85,34 +85,18 @@ usethis::use_data(design, overwrite = TRUE)
 
 
 
-# ## code to prepare `DATASET` dataset goes here
-#
-#
-# #------ Prepare data
-msni <- data.frame(
-  uuid = paste0("x_", 1:10000),
-  health_crit_1 = sample(c(1:3, NA_integer_), 10000, replace = TRUE),
-  health_noncrit_1 = sample(c(0:1, NA_integer_), 10000, replace = TRUE),
-  health_noncrit_2 = sample(0:1, 10000, replace = TRUE),
-  health_noncrit_3 = sample(0:1, 10000, replace = TRUE),
-  fs_crit_1 = sample(c(1:5, NA_integer_), 10000, replace = TRUE),
-  liv_crit_1 = sample(1:4, 10000, replace = TRUE),
-  liv_crit_2 = sample(1:4, 10000, replace = TRUE),
-  liv_crit_3 = sample(1:3, 10000, replace = TRUE),
-  liv_crit_4 = sample(c(1:4, NA_integer_), 10000, replace = TRUE),
-  liv_noncrit_1 = sample(c(0:1, NA_integer_), 10000, replace = TRUE),
-  wash_crit_1 = sample(1:5, 10000, replace = TRUE),
-  wash_crit_2 = sample(c(1:5, NA_integer_), 10000, replace = TRUE),
-  wash_crit_3 = sample(1:5, 10000, replace = TRUE),
-  wash_crit_4 = sample(c(1:2, NA_integer_), 10000, replace = TRUE),
-  educ_crit_1 = sample(c(1,3,4, NA_integer_), 10000, replace = TRUE),
-  educ_crit_2 = sample(c(1,2,4), 10000, replace = TRUE),
-  educ_noncrit_1 = sample(c(0:1, NA_integer_), 10000, replace = TRUE),
-  educ_noncrit_2 = sample(0:1, 10000, replace = TRUE),
-  educ_noncrit_3 = sample(0:1, 10000, replace = TRUE),
-  shelter_crit_1 = sample(c(1,2,3, 5, NA_integer_), 10000, replace = TRUE),
-  prot_crit_1 = sample(c(1:4, NA_integer_), 10000, replace = TRUE),
-  prot_crit_2 = sample(c(1, 3, 4), 10000, replace = TRUE)
+
+# Data analysis plan ------------------------------------------------------
+
+analysis_dap <- dplyr::tibble(
+  sector = c("General information", "Expenses", "Education", "Sanitation", "Education", "Education"),
+  indicator = c("Mean of the number of school-aged girl in the household", "Median of food expenses", "A ratio that does not really mean anything and is a bad example for education", "% of households by type of latrine", "% of households by type of school that children go to (private, public)", "% of households by type of school that children go to (private, public)"),
+  var = c("c_total_3_17_femmes", "f_5_depenses_ba", "e_abandont_3a_4a_fille,c_total_3_17_femmes", "h_2_type_latrine", "e_typ_ecole", "e_typ_ecole"),
+  analysis = c("mean", "median", "ratio", "select_one", "select_multiple", "select_multiple"),
+  na_rm = c("yes", "yes", "yes", "no", "yes", "no"),
+  subset = c("Household with school-aged girl", NA, "Maybe a subset that does not mean anything", NA, "Households with at least a school-aged child", NA)
 )
 
-usethis::use_data(msni, overwrite = TRUE)
+usethis::use_data(analysis_dap, overwrite = TRUE)
+
+
