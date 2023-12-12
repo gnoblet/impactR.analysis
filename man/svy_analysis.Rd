@@ -67,7 +67,7 @@ Survey analysis
 \section{Specificity per type of analysis}{
 
 
-The possible analysis type are: mean for \code{\link[=svy_mean]{svy_mean()}}, median for \code{\link[=svy_median]{svy_median()}}, interact for \code{\link[=svy_interact]{svy_interact()}}, prop for \code{\link[=svy_prop]{svy_prop()}}, ratio for \code{\link[=svy_ratio]{svy_ratio()}}, or quantile \code{\link[=svy_quantile]{svy_quantile()}}.
+The possible analysis type are: mean for \code{\link[=svy_mean]{svy_mean()}}, median for \code{\link[=svy_median]{svy_median()}}, interact for \code{\link[=svy_interact]{svy_interact()}}, proportion for \code{\link[=svy_proportion]{svy_proportion()}}, ratio for \code{\link[=svy_ratio]{svy_ratio()}}, or quantile \code{\link[=svy_quantile]{svy_quantile()}}.
 \itemize{
 \item If \code{analysis} is "ratio": \code{vars} takes a named vector. Names will be passed to \code{nums} in \code{\link[=svy_ratio]{svy_ratio()}} and values to \code{denoms}.
 \item If \code{analysis} is "interact": \code{vars} is the equivalent of \code{interact}.
@@ -76,11 +76,14 @@ The possible analysis type are: mean for \code{\link[=svy_mean]{svy_mean()}}, me
 
 \seealso{
 Other survey analysis functions: 
+\code{\link{auto_kobo_analysis}()},
 \code{\link{auto_svy_analysis}()},
+\code{\link{kobo_analysis_from_dap}()},
+\code{\link{kobo_analysis}()},
 \code{\link{svy_interact}()},
 \code{\link{svy_mean}()},
 \code{\link{svy_median}()},
-\code{\link{svy_prop}()},
+\code{\link{svy_proportion}()},
 \code{\link{svy_quantile}()},
 \code{\link{svy_ratio}()}
 }

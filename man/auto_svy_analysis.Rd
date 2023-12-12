@@ -7,7 +7,7 @@
 auto_svy_analysis(
   design,
   group = NULL,
-  group_key_sep = "*",
+  group_key_sep = " ~/~ ",
   na_rm = TRUE,
   vartype = "ci",
   level = 0.95,
@@ -40,16 +40,19 @@ Auto survey analysis
 \section{Automation}{
 
 
-\link{auto_svy_analysis} performs a very basic automatic analysis. All numeric columns get means and medians. All character columns get a proportion.
+\link{auto_svy_analysis} performs a very basic automated analysis. All numeric columns get means and medians. All character columns get a proportion.
 }
 
 \seealso{
 Other survey analysis functions: 
+\code{\link{auto_kobo_analysis}()},
+\code{\link{kobo_analysis_from_dap}()},
+\code{\link{kobo_analysis}()},
 \code{\link{svy_analysis}()},
 \code{\link{svy_interact}()},
 \code{\link{svy_mean}()},
 \code{\link{svy_median}()},
-\code{\link{svy_prop}()},
+\code{\link{svy_proportion}()},
 \code{\link{svy_quantile}()},
 \code{\link{svy_ratio}()}
 }

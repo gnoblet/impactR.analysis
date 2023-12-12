@@ -8,7 +8,7 @@
 #'
 #' @section Automation:
 #'
-#' [auto_svy_analysis] performs a very basic automatic analysis. All numeric columns get means and medians. All character columns get a proportion.
+#' [auto_svy_analysis] performs a very basic automated analysis. All numeric columns get means and medians. All character columns get a proportion.
 #'
 #' @inheritParams svy_ratio
 #' @inheritParams svy_interact
@@ -22,7 +22,7 @@
 #'
 #' @export
 #'
-auto_svy_analysis <- function(design, group = NULL, group_key_sep = "*", na_rm = TRUE, vartype = "ci", level = 0.95, bind = TRUE){
+auto_svy_analysis <- function(design, group = NULL, group_key_sep = " ~/~ ", na_rm = TRUE, vartype = "ci", level = 0.95, bind = TRUE){
 
   numeric_cols <- colnames(design$variables)[purrr::map_lgl(design$variables, \(x) is.numeric(x))]
 

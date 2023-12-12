@@ -73,38 +73,14 @@ svy_analysis(design,
              vars = c("h_2_type_latrine", "e_typ_ecole"))
 
 # For ratios, provide a named vector of num = denom variables
-svy_analysis(design, analysis = "ratio", c("e_typ_ecole_publique" = "e_typ_ecole_publique", "e_typ_ecole_non_publique" = "e_typ_ecole_publique"))
+svy_analysis(design,
+             analysis = "ratio",
+             vars = c("e_typ_ecole_publique" = "e_typ_ecole_publique", "e_typ_ecole_non_publique" = "e_typ_ecole_publique"))
 
 # Then there is this dirty automated function
 auto_svy_analysis(design)
 
 ```
+## Analysis based on a Kobo tool
 
-## Proportion for select ones
-
-```{r select-ones, eval = FALSE}
-
-# With the labels, wonderful "var_label" and "var_value_label"
-# Choices is optional
-# Survey is mandatory
-proportion_select_one(design, vars = c("h_2_type_latrine", "admin1"), survey, choices, group = "milieu")
-
-# For all select ones in the survey sheet
-proportion_all_select_one(design, survey, choices)
-```
-
-## Proportion for select ones
-
-To be used carefully. Less tested than other functions. 
-
-```{r select-multiples, eval = FALSE}
-# With the labels, note the "choices_sep" argument
-# that allows for choosing the choice separator in the database
-# either a "/" or "." or a "_" , etc.
-# It still only accepts one variable
-?proportion_select_multiple()
-proportion_select_multiple(design, "e_typ_ecole", survey, choices, choices_sep = "_")
-
-proportion_all_select_multiple(design, survey, choices)
-
-```
+For all analyses based on a Kobo tool, see: vignette "Survey analysis based on a Kobo tool" in /vignettes.
