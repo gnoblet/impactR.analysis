@@ -75,7 +75,7 @@ kobo_median_all(design,survey)
 
 ## Ratio for numeric variables (decimal, integer, calculate)
 
-```{r kobo-ratio}
+```{r kobo-ratio, eval = F}
 kobo_ratio(design, nums = "e_abandont_3a_4a_fille", denoms = "c_total_3_17_femmes", survey = survey)
 ```
 
@@ -85,7 +85,7 @@ kobo_ratio(design, nums = "e_abandont_3a_4a_fille", denoms = "c_total_3_17_femme
 
 The `auto_kobo_analysis()` function runs all the above functions but `kobo_ratio()` at once.
 
-While all these functions provide a quick workflow for analyzing survey data, the recommend way is to provide a data analysis plan and use functions `kobo_analysis()` or `kobo_analysis_dap()`, see Vignette: TBC, which allows for finer analyses (e.g. providing ratios, labels of indicators, etc., beyond types as defined in the Kobo tool.)
+While all these functions provide a quick workflow for analyzing survey data, the recommend way is to provide a data analysis plan and use functions `kobo_analysis()` or `kobo_analysis_dap()` (see below), which allows for finer analyses (e.g. providing ratios, labels of indicators, etc., beyond types as defined in the Kobo tool.)
 
 ## Make your own analysis 
 ```{r kobo-analysis, eval = F}
@@ -115,9 +115,16 @@ Necessary columns are: `analysis`, `vars`, `na_rm`. Other arguments are to be pa
 - bind all
 - left_join the other columns
 
-It should contain only one variable to analyze per row (or in the case of a ratio the two variables to calculate the ratio from separated by a comma).
+It should contain only one variable to analyze per row (or in the case of a ratio the two variables to calculate the ratio from separated by a comma). The package contains an example:
 
 ```{r kobo-analysis-dap}
+analysis_dap
+```
+
+
+Then, to run the analysis, do the following:
+
+```{r kobo-analysis-from-dap, eval = F}
 # Default
 kobo_analysis_from_dap(design, analysis_dap, survey, choices)
 

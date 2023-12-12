@@ -76,10 +76,7 @@ The possible analysis type are: mean for \code{\link[=svy_mean]{svy_mean()}}, me
 
 \seealso{
 Other survey analysis functions: 
-\code{\link{auto_kobo_analysis}()},
 \code{\link{auto_svy_analysis}()},
-\code{\link{kobo_analysis_from_dap}()},
-\code{\link{kobo_analysis}()},
 \code{\link{svy_interact}()},
 \code{\link{svy_mean}()},
 \code{\link{svy_median}()},
