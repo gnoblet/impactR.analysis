@@ -24,9 +24,9 @@
 #' @format A data frame with 55 rows and 7 variables
 "choices"
 
-#' Some composite indicators to compute LSG scores and MSNI score
+#' A data analysis plan prepared ahead of data analysis
 #'
-#' A dataset with score for non-critical and critical indicators for each sector.
+#' A data analysis plan prepared ahead of data analysis.
 #'
-#' @format A data frame with 10000 rows and 7 variables
-"msni"
+#' @format A data frame with 6 rows and 6 variables
+"analysis_dap"
