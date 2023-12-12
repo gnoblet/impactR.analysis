@@ -2,7 +2,7 @@
 title: "Survey analysis based on a Kobo tool"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{kobo_analysis}
+  %\VignetteIndexEntry{Survey analysis based on a Kobo tool}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
