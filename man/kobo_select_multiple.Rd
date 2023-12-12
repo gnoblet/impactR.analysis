@@ -70,6 +70,9 @@ This allows to calculate the \% for each choice over the whole dataset.
 
 \seealso{
 Other functions for analyzing from Kobo tool: 
+\code{\link{auto_kobo_analysis}()},
+\code{\link{kobo_analysis_from_dap}()},
+\code{\link{kobo_analysis}()},
 \code{\link{kobo_mean_all}()},
 \code{\link{kobo_mean}()},
 \code{\link{kobo_median_all}()},

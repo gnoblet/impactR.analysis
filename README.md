@@ -6,6 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
+<a href="https://gnoblet.github.io/impactR.analysis/"><img src="man/figures/logo.png" align="right" height="139" alt="impactR.analysis website" /></a>
+
 Faster and simpler survey analysis.
 
 ## Installation
@@ -72,6 +74,9 @@ svy_analysis(design,
 # Then there is this dirty automated function
 auto_svy_analysis(design)
 ```
+
 ## Analysis based on a Kobo tool
 
-For all analyses based on a Kobo tool, see: vignette "Survey analysis based on a Kobo tool" in /vignettes.
+For all analyses based on a Kobo tool, see: vignette [Survey analysis
+based on a Kobo
+tool](https://gnoblet.github.io/impactR.analysis/articles/kobo_analysis.html).

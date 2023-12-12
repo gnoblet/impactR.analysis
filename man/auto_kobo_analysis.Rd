@@ -57,16 +57,17 @@ Auto survey from a Kobo tool analysis
 }
 
 \seealso{
-Other survey analysis functions: 
-\code{\link{auto_svy_analysis}()},
+Other functions for analyzing from Kobo tool: 
 \code{\link{kobo_analysis_from_dap}()},
 \code{\link{kobo_analysis}()},
-\code{\link{svy_analysis}()},
-\code{\link{svy_interact}()},
-\code{\link{svy_mean}()},
-\code{\link{svy_median}()},
-\code{\link{svy_proportion}()},
-\code{\link{svy_quantile}()},
-\code{\link{svy_ratio}()}
+\code{\link{kobo_mean_all}()},
+\code{\link{kobo_mean}()},
+\code{\link{kobo_median_all}()},
+\code{\link{kobo_median}()},
+\code{\link{kobo_ratio}()},
+\code{\link{kobo_select_multiple_all}()},
+\code{\link{kobo_select_multiple}()},
+\code{\link{kobo_select_one_all}()},
+\code{\link{kobo_select_one}()}
 }
-\concept{survey analysis functions}
+\concept{functions for analyzing from Kobo tool}

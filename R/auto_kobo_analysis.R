@@ -16,7 +16,7 @@
 #'
 #' @importFrom rlang `:=`
 #'
-#' @family survey analysis functions
+#' @family functions for analyzing from Kobo tool
 #'
 #' @return A survey-summarized-median data frame
 #'
