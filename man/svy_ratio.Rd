@@ -8,15 +8,15 @@ svy_ratio(
   design,
   nums,
   denoms,
-  ratio_key_sep = " ~/~ ",
+  ratio_key_sep = " -/- ",
   group = NULL,
-  group_key_sep = " ~/~ ",
+  group_key_sep = " -/- ",
   na_rm = TRUE,
   vartype = "ci",
   level = 0.95,
   ak = TRUE,
   ak_overall_sep = " @/@ ",
-  ak_main_sep = " ~/~ ",
+  ak_main_sep = " -/- ",
   ak_var_to_value_sep = " \%/\% ",
   ...
 )
