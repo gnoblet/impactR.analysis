@@ -20,7 +20,7 @@
 #' @return A survey-summarized-median data frame
 #'
 #' @export
-svy_median <- function(design, vars, group = NULL,  group_key_sep = " ~/~ ", na_rm = TRUE, vartype = "ci", level = 0.95, ak = TRUE, ak_overall_sep = " @/@ ", ak_main_sep = " ~/~ ", ak_var_to_value_sep = " %/% ", ...){
+svy_median <- function(design, vars, group = NULL,  group_key_sep = " -/- ", na_rm = TRUE, vartype = "ci", level = 0.95, ak = TRUE, ak_overall_sep = " @/@ ", ak_main_sep = " -/- ", ak_var_to_value_sep = " %/% ", ...){
 
   #------ Gather arguments
 

@@ -138,7 +138,7 @@ are_in_set <- function(df, cols, set, main_message){
 
 
 # Adds the analysis key to the results table from a svy_*() function
-add_analysis_key <- function(results, group_key_name = "group_key", group_key_value_name = "group_key_value", group_key_sep = " ~/~ ", var_name = "var", var_value_name = "var_value", var_key_sep = " ~/~ ",  overall_sep = " @/@ ", main_sep =  " ~/~ ", var_to_value_sep = " %/% ") {
+add_analysis_key <- function(results, group_key_name = "group_key", group_key_value_name = "group_key_value", group_key_sep = " -/- ", var_name = "var", var_value_name = "var_value", var_key_sep = " -/- ",  overall_sep = " @/@ ", main_sep =  " -/- ", var_to_value_sep = " %/% ") {
 
 
   # Extract group values

@@ -16,7 +16,7 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-kobo_select_one <- function(design, vars, survey, choices = NULL, group = NULL, group_key_sep = " ~/~ ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
+kobo_select_one <- function(design, vars, survey, choices = NULL, group = NULL, group_key_sep = " -/- ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
 
   #------ Gather arguments

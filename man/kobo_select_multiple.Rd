@@ -11,7 +11,7 @@ kobo_select_multiple(
   choices = NULL,
   choices_sep = "_",
   group = NULL,
-  group_key_sep = " ~/~ ",
+  group_key_sep = " -/- ",
   label_survey = TRUE,
   label_choices = TRUE,
   na_rm = TRUE,
@@ -71,15 +71,15 @@ This allows to calculate the \% for each choice over the whole dataset.
 \seealso{
 Other functions for analyzing from Kobo tool: 
 \code{\link{auto_kobo_analysis}()},
-\code{\link{kobo_analysis_from_dap}()},
 \code{\link{kobo_analysis}()},
-\code{\link{kobo_mean_all}()},
+\code{\link{kobo_analysis_from_dap}()},
 \code{\link{kobo_mean}()},
-\code{\link{kobo_median_all}()},
+\code{\link{kobo_mean_all}()},
 \code{\link{kobo_median}()},
+\code{\link{kobo_median_all}()},
 \code{\link{kobo_ratio}()},
 \code{\link{kobo_select_multiple_all}()},
-\code{\link{kobo_select_one_all}()},
-\code{\link{kobo_select_one}()}
+\code{\link{kobo_select_one}()},
+\code{\link{kobo_select_one_all}()}
 }
 \concept{functions for analyzing from Kobo tool}

@@ -15,7 +15,7 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-kobo_mean <- function(design, vars, survey, group = NULL, group_key_sep = " ~/~ ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
+kobo_mean <- function(design, vars, survey, group = NULL, group_key_sep = " -/- ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
 
   #------ Gather arguments
