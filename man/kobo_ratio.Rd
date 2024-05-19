@@ -8,7 +8,7 @@ kobo_ratio(
   design,
   nums,
   denoms,
-  ratio_key_sep = " ~/~ ",
+  ratio_key_sep = " -/- ",
   survey,
   group = NULL,
   group_key_sep = " ~/~ ",
@@ -55,15 +55,15 @@ Get the ratio for numeric variables.
 \seealso{
 Other functions for analyzing from Kobo tool: 
 \code{\link{auto_kobo_analysis}()},
-\code{\link{kobo_analysis_from_dap}()},
 \code{\link{kobo_analysis}()},
-\code{\link{kobo_mean_all}()},
+\code{\link{kobo_analysis_from_dap}()},
 \code{\link{kobo_mean}()},
-\code{\link{kobo_median_all}()},
+\code{\link{kobo_mean_all}()},
 \code{\link{kobo_median}()},
-\code{\link{kobo_select_multiple_all}()},
+\code{\link{kobo_median_all}()},
 \code{\link{kobo_select_multiple}()},
-\code{\link{kobo_select_one_all}()},
-\code{\link{kobo_select_one}()}
+\code{\link{kobo_select_multiple_all}()},
+\code{\link{kobo_select_one}()},
+\code{\link{kobo_select_one_all}()}
 }
 \concept{functions for analyzing from Kobo tool}

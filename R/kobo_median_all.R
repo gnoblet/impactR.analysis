@@ -13,7 +13,7 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-kobo_median_all <- function(design, survey, group = NULL, group_key_sep = " ~/~ ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
+kobo_median_all <- function(design, survey, group = NULL, group_key_sep = " -/- ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
   suppressWarnings(num_vars <- c(
     impactR.kobo::get_survey_decimal(survey),

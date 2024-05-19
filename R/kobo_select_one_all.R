@@ -14,7 +14,7 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-kobo_select_one_all <- function(design, survey, choices = NULL, group = NULL, group_key_sep = " ~/~ ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
+kobo_select_one_all <- function(design, survey, choices = NULL, group = NULL, group_key_sep = " -/- ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
   select_ones <- impactR.kobo::get_survey_select_one(survey)
 

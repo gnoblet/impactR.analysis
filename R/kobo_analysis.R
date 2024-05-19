@@ -26,7 +26,7 @@
 #'
 #' @export
 #'
-kobo_analysis <- function(design, analysis, vars, survey, choices = NULL, group = NULL, group_key_sep = " ~/~ ", label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95, ratio_key_sep = " ~/~ ",  choices_sep = "_"){
+kobo_analysis <- function(design, analysis, vars, survey, choices = NULL, group = NULL, group_key_sep = " -/- ", label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95, ratio_key_sep = " -/- ",  choices_sep = "_"){
 
 
   analysis_type <- c("mean", "median", "select_multiple", "select_one", "ratio")

@@ -16,7 +16,7 @@
 #' @return A survey-summarized-mean data frame
 #'
 #' @export
-svy_quantile <- function(design, vars, quantiles = c(0.25, 0.5, 0.75), group = NULL, group_key_sep = " ~/~ ", na_rm = TRUE, vartype = "ci", level = 0.95, ...){
+svy_quantile <- function(design, vars, quantiles = c(0.25, 0.5, 0.75), group = NULL, group_key_sep = " -/- ", na_rm = TRUE, vartype = "ci", level = 0.95, ...){
 
 
   #------ Gather arguments

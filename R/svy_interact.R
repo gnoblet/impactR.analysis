@@ -22,7 +22,7 @@
 #' @return A survey-summarized-mean data frame
 #'
 #' @export
-svy_interact <- function(design, interact, interact_key_sep = " ~/~ ", group = NULL, group_key_sep = " ~/~ ", unnest_interaction = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95, ak = TRUE, ak_overall_sep = " @/@ ", ak_main_sep = " ~/~ ", ak_var_to_value_sep = " %/% ", ...){
+svy_interact <- function(design, interact, interact_key_sep = " -/- ", group = NULL, group_key_sep = " -/- ", unnest_interaction = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95, ak = TRUE, ak_overall_sep = " @/@ ", ak_main_sep = " -/- ", ak_var_to_value_sep = " %/% ", ...){
 
   #------ Gather arguments
 
