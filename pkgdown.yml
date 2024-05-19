@@ -3,7 +3,7 @@ pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   kobo_analysis: kobo_analysis.html
-last_built: 2024-05-17T11:18Z
+last_built: 2024-05-19T13:54Z
 urls:
   reference: https://gnoblet.github.io/impactR.analysis/reference
   article: https://gnoblet.github.io/impactR.analysis/articles
