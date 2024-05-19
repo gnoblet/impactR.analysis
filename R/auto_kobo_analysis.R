@@ -22,7 +22,7 @@
 #'
 #' @export
 #'
-auto_kobo_analysis <- function(design, survey, choices, group = NULL, group_key_sep = " ~/~ ", na_rm = TRUE, vartype = "ci", level = 0.95, choices_sep = "_", label_survey = TRUE, bind = TRUE){
+auto_kobo_analysis <- function(design, survey, choices, group = NULL, group_key_sep = " -/- ", na_rm = TRUE, vartype = "ci", level = 0.95, choices_sep = "_", label_survey = TRUE, bind = TRUE){
 
   num_median_an <- kobo_median_all(design, survey, group, group_key_sep, label_survey, na_rm, vartype, level)
   num_mean_an <- kobo_mean_all(design, survey, group, group_key_sep, label_survey, na_rm, vartype, level)
