@@ -22,7 +22,7 @@
 #'
 #' @export
 #'
-auto_svy_analysis <- function(design, group = NULL, group_key_sep = " ~/~ ", na_rm = TRUE, vartype = "ci", level = 0.95, bind = TRUE){
+auto_svy_analysis <- function(design, group = NULL, group_key_sep = " -/- ", na_rm = TRUE, vartype = "ci", level = 0.95, bind = TRUE){
 
   numeric_cols <- colnames(design$variables)[purrr::map_lgl(design$variables, \(x) is.numeric(x))]
 

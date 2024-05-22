@@ -11,7 +11,7 @@ kobo_ratio(
   ratio_key_sep = " -/- ",
   survey,
   group = NULL,
-  group_key_sep = " ~/~ ",
+  group_key_sep = " -/- ",
   label_survey = TRUE,
   na_rm = TRUE,
   vartype = "ci",

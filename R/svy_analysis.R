@@ -27,7 +27,7 @@
 #'
 #' @export
 #'
-svy_analysis <- function(design, analysis, vars, group = NULL, group_key_sep = " -/- ", na_rm = TRUE, vartype = "ci", level = 0.95, ratio_key_sep = " ~/~ ",  interact_key_sep = " -/- ", quantiles = c(0.25, 0.5, 0.75), ak = TRUE, ak_overall_sep = " @/@ ", ak_main_sep = " -/-", ak_var_to_value_sep = " %/% ", ...){
+svy_analysis <- function(design, analysis, vars, group = NULL, group_key_sep = " -/- ", na_rm = TRUE, vartype = "ci", level = 0.95, ratio_key_sep = " -/- ",  interact_key_sep = " -/- ", quantiles = c(0.25, 0.5, 0.75), ak = TRUE, ak_overall_sep = " @/@ ", ak_main_sep = " -/-", ak_var_to_value_sep = " %/% ", ...){
 
 
   analysis_type <- c("mean", "median", "proportion", "quantile", "ratio", "interact")

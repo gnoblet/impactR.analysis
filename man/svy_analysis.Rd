@@ -13,7 +13,7 @@ svy_analysis(
   na_rm = TRUE,
   vartype = "ci",
   level = 0.95,
-  ratio_key_sep = " ~/~ ",
+  ratio_key_sep = " -/- ",
   interact_key_sep = " -/- ",
   quantiles = c(0.25, 0.5, 0.75),
   ak = TRUE,
