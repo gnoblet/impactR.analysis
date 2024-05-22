@@ -18,7 +18,7 @@ kobo_analysis(
   vartype = "ci",
   level = 0.95,
   ratio_key_sep = " -/- ",
-  choices_sep = "_"
+  choices_sep = "/"
 )
 }
 \arguments{

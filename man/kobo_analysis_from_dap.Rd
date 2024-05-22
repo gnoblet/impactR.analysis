@@ -2,6 +2,7 @@
 % Please edit documentation in R/kobo_analysis_from_dap.R
 \name{kobo_analysis_from_dap}
 \alias{kobo_analysis_from_dap}
+\alias{kobo_analysis_from_dap_group}
 \title{Kobo survey analysis from a data analysis plan}
 \usage{
 kobo_analysis_from_dap(
@@ -11,7 +12,18 @@ kobo_analysis_from_dap(
   choices,
   group = NULL,
   level = 0.95,
-  choices_sep = "_"
+  choices_sep = "/"
+)
+
+kobo_analysis_from_dap_group(
+  design,
+  dap,
+  survey,
+  choices,
+  l_group,
+  no_group = TRUE,
+  level = 0.95,
+  choices_sep = "/"
 )
 }
 \arguments{
@@ -29,12 +41,16 @@ kobo_analysis_from_dap(
 the confidence level}
 
 \item{choices_sep}{Select multiples choices separator.}
+
+\item{l_group}{A list of vectors of variables to group by.}
+
+\item{no_group}{If TRUE, the analysis without grouping is run.}
 }
 \value{
 A survey-summarized-median data frame
 }
 \description{
-Kobo survey analysis from a data analysis plan
+\link{kobo_analysis_from_dap} performs a survey analysis from a data analysis plan, while \link{kobo_analysis_from_dap_group} is a wrapper around the former to run multiple grouped analyses at once.
 }
 \section{Specifics}{
 

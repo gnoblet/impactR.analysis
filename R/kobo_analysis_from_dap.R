@@ -1,4 +1,6 @@
-#' @title Kobo survey analysis from a data analysis plan
+#' Kobo survey analysis from a data analysis plan
+#'
+#' [kobo_analysis_from_dap] performs a survey analysis from a data analysis plan, while [kobo_analysis_from_dap_group] is a wrapper around the former to run multiple grouped analyses at once.
 #'
 #' @param design A srvyr::design object.
 #' @param dap A well formatted data analysis plan.#'
@@ -21,7 +23,7 @@
 #'
 #' @export
 #'
-kobo_analysis_from_dap <- function(design, dap, survey, choices, group = NULL, level = 0.95, choices_sep = "_"){
+kobo_analysis_from_dap <- function(design, dap, survey, choices, group = NULL, level = 0.95, choices_sep = "/"){
 
   #------ Checks
 
@@ -77,6 +79,48 @@ kobo_analysis_from_dap <- function(design, dap, survey, choices, group = NULL, l
 
 
   return(analysis)
-#
 
 }
+
+
+
+#' @rdname kobo_analysis_from_dap
+#'
+#' @param l_group A list of vectors of variables to group by.
+#' @param no_group If TRUE, the analysis without grouping is run.
+#'
+#' @export
+kobo_analysis_from_dap_group <- function(design, dap, survey, choices, l_group, no_group = TRUE, level = 0.95, choices_sep = "/"){
+
+  #------ Checks
+
+  # Check if l_group is a list
+  if (!is.list(l_group)) rlang::abort("'l_group' should be a list.")
+
+  # Check if all elements are vectors of variables that exist in the design
+  purrr::map(l_group, \(x) if_not_in_stop(design$variables, x, "design"))
+
+  #------ Run analysis
+
+  # Map over group list
+  analysis <- purrr::map(
+    l_group,
+    \(x) {
+
+      an <- kobo_analysis_from_dap(design = design, dap = dap, survey = survey, choices = choices, group = x, level = level, choices_sep = choices_sep)
+
+      return(an)
+
+    },
+    .progress = TRUE
+  )
+
+  if(no_group) analysis[["no_grouping"]] <- kobo_analysis_from_dap(design = design, dap = dap, survey = survey, choices = choices, level = level, choices_sep = choices_sep)
+
+  # Bind all analyses together
+  analysis <- purrr::list_rbind(analysis)
+
+
+  return(analysis)
+}
+

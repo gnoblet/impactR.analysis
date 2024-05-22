@@ -9,11 +9,11 @@ auto_kobo_analysis(
   survey,
   choices,
   group = NULL,
-  group_key_sep = " ~/~ ",
+  group_key_sep = " -/- ",
   na_rm = TRUE,
   vartype = "ci",
   level = 0.95,
-  choices_sep = "_",
+  choices_sep = "/",
   label_survey = TRUE,
   bind = TRUE
 )
