@@ -21,7 +21,7 @@
 #'
 #' @export
 #'
-kobo_analysis_from_dap <- function(design, dap, survey, choices, group = NULL, level = 0.95, choices_sep = "_"){
+kobo_analysis_from_dap <- function(design, dap, survey, choices, group = NULL, level = 0.95, choices_sep = "/"){
 
   #------ Checks
 
