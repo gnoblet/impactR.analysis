@@ -31,4 +31,4 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-URL: https://gnoblet.github.io/impactR.analysis/
+URL: https://impact-initiatives-hppu.github.io/impactR.analysis/

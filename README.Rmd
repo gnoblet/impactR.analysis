@@ -27,7 +27,7 @@ You can install the development version of impactR.analysis from [GitHub](https:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("gnoblet/impactR.analysis")
+devtools::install_github("impact-initiatives-hppu/impactR.analysis")
 ```
 
 ## The `svy_*()` family, wrappers around `srvyr` functions.
@@ -84,4 +84,4 @@ auto_svy_analysis(design)
 ```
 ## Analysis based on a Kobo tool
 
-For all analyses based on a Kobo tool, see: vignette [Survey analysis based on a Kobo tool](https://gnoblet.github.io/impactR.analysis/articles/kobo_analysis.html).
+For all analyses based on a Kobo tool, see: vignette [Survey analysis based on a Kobo tool](https://impact-initiatives-hppu.github.io/impactR.analysis/articles/kobo_analysis.html).
