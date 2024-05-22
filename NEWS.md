@@ -1,3 +1,7 @@
+# impactR.analysis 0.0.5
+
+* New: added `auto_group_remove` parameter to `kobo_analysis()`, made to automatically remove grouping columns from the analysis (#21).
+
 # impactR.analysis 0.0.4
 
 * Update: the default choices_sep is now "/".

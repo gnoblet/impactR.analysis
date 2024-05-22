@@ -6,6 +6,7 @@
 #' @param choices The choices sheet from Kobo.
 #' @param group A quoted vector of columns to group by. Default to NULL for no group.
 #' @param group_key_sep A character string to separate grouping column names in a fancy 'group_key' column.
+#' @param auto_group_remove If TRUE, the analysis won't be run for vars that are in group. Default to TRUE.
 #' @param na_rm Should NAs from `var` be removed? Default to TRUE.
 #'
 #' @section Specificity per type of analysis:
@@ -26,12 +27,36 @@
 #'
 #' @export
 #'
-kobo_analysis <- function(design, analysis, vars, survey, choices = NULL, group = NULL, group_key_sep = " -/- ", label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95, ratio_key_sep = " -/- ",  choices_sep = "/"){
+kobo_analysis <- function(design, analysis, vars, survey, choices = NULL, group = NULL, group_key_sep = " -/- ", auto_group_remove = TRUE, label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95, ratio_key_sep = " -/- ",  choices_sep = "/"){
 
 
+  #------ Checks
+
+  # CHeck analysis type
   analysis_type <- c("mean", "median", "select_multiple", "select_one", "ratio")
 
   if (!(analysis %in% analysis_type)) rlang::abort(paste0("Please provide an analysis from the following list: ", paste(analysis_type, collapse = ", "), "."))
+
+  # Auto-removing of vars that are in group
+  if(auto_group_remove & !is.null(group)) {
+
+    vars_in_group <- vars[vars %in% group]
+    vars_nin_group <- vars[!(vars %in% group)]
+
+    if (length(vars_nin_group) == 0) {
+      rlang::warn(c(
+        "Grouping columns in `group` should be different than the ones in 'vars'.",
+        "i" = "All 'vars' are in 'group'. An empty tibble is returned."
+      ))
+      return(dplyr::tibble())
+    } else if (length(vars_in_group) > 0){
+      rlang::warn(c(
+        "Grouping columns in `group` should be different than the ones in 'vars'.",
+        "i" = glue::glue("The analysis is not run for 'vars': ", glue::glue_collapse(vars_in_group, sep = ", ", last = " and "))
+      ))
+      vars <- vars_nin_group
+    }
+  }
 
   if (analysis == "mean") {
 

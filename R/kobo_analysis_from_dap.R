@@ -3,7 +3,7 @@
 #' [kobo_analysis_from_dap] performs a survey analysis from a data analysis plan, while [kobo_analysis_from_dap_group] is a wrapper around the former to run multiple grouped analyses at once.
 #'
 #' @param design A srvyr::design object.
-#' @param dap A well formatted data analysis plan.#'
+#' @param dap A well formatted data analysis plan.
 #'
 #' @section Specifics:
 #'
