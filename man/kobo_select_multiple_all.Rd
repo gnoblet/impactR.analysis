@@ -10,7 +10,7 @@ kobo_select_multiple_all(
   choices,
   group = NULL,
   group_key_sep = " -/- ",
-  choices_sep = "_",
+  choices_sep = "/",
   label_survey = TRUE,
   label_choices = TRUE,
   na_rm = TRUE,

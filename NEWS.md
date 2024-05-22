@@ -1,3 +1,9 @@
+# impactR.analysis 0.0.4
+
+* Update: the default choices_sep is now "/".
+* Update: analysis key has been updated (see #11).
+* New: `kobo_analysis_from_dap_group()` is a wrapper around the `kobo_analysis_from_dap()` function, over a list of grouping vectors (#15).
+
 # impactR.analysis 0.0.3
 
 * Breaking change and new: the `kobo_*()` family functions make use of the `svy_*()` family and Kobo tools. Previous functions have been renamed and updated `prop_*`.

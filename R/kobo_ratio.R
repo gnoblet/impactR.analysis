@@ -14,7 +14,7 @@
 #' @return A character vector of select_one questions.
 #'
 #' @export
-kobo_ratio <- function(design, nums, denoms, ratio_key_sep = " -/- ", survey, group = NULL, group_key_sep = " ~/~ ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
+kobo_ratio <- function(design, nums, denoms, ratio_key_sep = " -/- ", survey, group = NULL, group_key_sep = " -/- ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
 
   #------ Gather arguments

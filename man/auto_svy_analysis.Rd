@@ -7,7 +7,7 @@
 auto_svy_analysis(
   design,
   group = NULL,
-  group_key_sep = " ~/~ ",
+  group_key_sep = " -/- ",
   na_rm = TRUE,
   vartype = "ci",
   level = 0.95,
