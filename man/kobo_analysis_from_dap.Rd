@@ -29,7 +29,7 @@ kobo_analysis_from_dap_group(
 \arguments{
 \item{design}{A srvyr::design object.}
 
-\item{dap}{A well formatted data analysis plan.#'}
+\item{dap}{A well formatted data analysis plan.}
 
 \item{survey}{The survey sheet from Kobo (with column "type" split). See \code{split_survey()}.}
 
