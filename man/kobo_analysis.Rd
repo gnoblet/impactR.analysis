@@ -12,6 +12,7 @@ kobo_analysis(
   choices = NULL,
   group = NULL,
   group_key_sep = " -/- ",
+  auto_group_remove = TRUE,
   label_survey = TRUE,
   label_choices = TRUE,
   na_rm = TRUE,
@@ -35,6 +36,8 @@ kobo_analysis(
 \item{group}{A quoted vector of columns to group by. Default to NULL for no group.}
 
 \item{group_key_sep}{A character string to separate grouping column names in a fancy 'group_key' column.}
+
+\item{auto_group_remove}{If TRUE, the analysis won't be run for vars that are in group. Default to TRUE.}
 
 \item{label_survey}{Boolean. Retrieve var's label from the survey sheet? Default to TRUE.}
 
