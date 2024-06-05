@@ -18,6 +18,7 @@
 #'
 #' @inheritParams kobo_select_multiple
 #' @inheritParams kobo_ratio
+#' @inheritParams kobo_interact
 #'
 #' @importFrom rlang `:=`
 #'
@@ -27,13 +28,12 @@
 #'
 #' @export
 #'
-kobo_analysis <- function(design, analysis, vars, survey, choices = NULL, group = NULL, group_key_sep = " -/- ", auto_group_remove = TRUE, label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95, ratio_key_sep = " -/- ",  choices_sep = "/"){
+kobo_analysis <- function(design, analysis, vars, survey, choices = NULL, group = NULL, group_key_sep = " -/- ", auto_group_remove = TRUE, label_survey = TRUE, label_choices = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95, ratio_key_sep = " -/- ",  interact_key_sep = " -/- ", choices_sep = "/"){
 
 
   #------ Checks
 
-  # CHeck analysis type
-  analysis_type <- c("mean", "median", "select_multiple", "select_one", "ratio")
+  analysis_type <- c("mean", "median", "select_multiple", "select_one", "ratio", "interact")
 
   if (!(analysis %in% analysis_type)) rlang::abort(paste0("Please provide an analysis from the following list: ", paste(analysis_type, collapse = ", "), "."))
 
@@ -82,7 +82,11 @@ kobo_analysis <- function(design, analysis, vars, survey, choices = NULL, group 
 
     an <- kobo_select_multiple(design, vars = vars, survey = survey, choices = choices, choices_sep = choices_sep, group = group, group_key_sep = group_key_sep, label_survey = label_survey, na_rm = na_rm, vartype = vartype, level = level)
 
-  }  else {
+  }  else if (analysis == "interact") {
+
+    an <- kobo_interact(design, vars = vars, survey = survey, group = group, group_key_sep = group_key_sep, label_survey = label_survey, na_rm = na_rm, vartype = vartype, level = level, interact_key_sep = interact_key_sep)
+
+  } else  {
 
     rlang::abort(paste0("Analysis ", analysis, "is not implemented yet... or will not. Feel free to reach out!"))
   }

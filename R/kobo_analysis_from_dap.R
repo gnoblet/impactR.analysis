@@ -32,7 +32,7 @@ kobo_analysis_from_dap <- function(design, dap, survey, choices, group = NULL, l
 
   # Check if types are the right ones
   analysis_type <- c("mean", "median", "select_multiple", "select_one", "ratio")
-  are_in_set(dap, "analysis", c("mean", "median", "select_multiple", "select_one", "ratio"), "Please provide only existing types which are either 'mean', 'median', 'select_multiple', 'select_one' or 'ratio'.")
+  are_values_in_set(dap, "analysis", c("mean", "median", "select_multiple", "select_one", "ratio", "interact"), "Please provide only existing types which are: ")
 
   if (nrow(dap) == 0) rlang::abort("'dap' does not contain any line. Please provide a non-empty data analysis plan.")
 
@@ -59,6 +59,15 @@ kobo_analysis_from_dap <- function(design, dap, survey, choices, group = NULL, l
         # Prepare named vector
         var <- ratio[2]
         names(var) <- ratio[1]
+      }
+
+      if (analysis == "interact") {
+        # For interaction, splitting "var" is needed
+        # If there is a white space wandering around, remove it
+        var <- stringr::str_squish(var)
+        # Split
+        var <- stringr::str_split_1(var, ",")
+
       }
 
       # Run the analysis

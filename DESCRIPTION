@@ -18,12 +18,12 @@ Imports:
     srvyr,
     stats,
     survey,
-    rlang,
+    rlang (>= 0.4.11),
     tidyr,
     stringr
 Remotes:
-  gnoblet/impactR.utils,
-  gnoblet/impactR.kobo
+    github::gnoblet/impactR.utils,
+    github::gnoblet/impactR.kobo,
 Depends: 
     R (>= 3.5.0)
 LazyData: true

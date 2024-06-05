@@ -75,7 +75,7 @@ svy_interact <- function(design, interact, interact_key_sep = " -/- ", group = N
     "n_unw" := srvyr::unweighted(srvyr::n()))
 
   # Add stat type
-  to_return[["stat_type"]] <- "interaction_proportion"
+  to_return[["stat_type"]] <- "proportion"
 
   # Get unweighted proportions
   to_return <- dplyr::mutate(to_return, "stat_unw" := prop.table(!!rlang::sym("n_unw")))

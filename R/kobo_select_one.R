@@ -29,7 +29,6 @@ kobo_select_one <- function(design, vars, survey, choices = NULL, group = NULL, 
   # Check if vars are in design
   if_not_in_stop(design, vars, "design")
 
-
   # Check survey and choices columns
   if_not_in_stop(survey, c("type", "name"), "survey")
   if (!is.null(choices)) if_not_in_stop(choices, c("label", "name"), "choices")
