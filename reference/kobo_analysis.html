@@ -151,7 +151,7 @@ the confidence level</p></dd>
     
 
 
-<p>The possible analysis type are: mean for <code><a href="kobo_mean.html">kobo_mean()</a></code>, median for <code><a href="kobo_median.html">kobo_median()</a></code>, select_one for <code><a href="kobo_select_one.html">kobo_select_one()</a></code>, select_multiple for <code><a href="kobo_select_multiple.html">kobo_select_multiple()</a></code>, or ratio for <code><a href="kobo_ratio.html">kobo_ratio()</a></code>.</p><ul><li><p>If <code>analysis</code> is "ratio": <code>vars</code> takes a named vector. Names will be passed to <code>nums</code> in <code><a href="svy_ratio.html">svy_ratio()</a></code> and values to <code>denoms</code>.</p></li>
+<p>The possible analysis type are: mean for <code><a href="kobo_mean.html">kobo_mean()</a></code>, median for <code><a href="kobo_median.html">kobo_median()</a></code>, select_one for <code><a href="kobo_select_one.html">kobo_select_one()</a></code>, select_multiple for <code><a href="kobo_select_multiple.html">kobo_select_multiple()</a></code>, or ratio for <code><a href="kobo_ratio.html">kobo_ratio()</a></code>. It now also incldues interactions between variables <code><a href="kobo_interact.html">kobo_interact()</a></code> using <code>analysis = "interact"</code>?</p><ul><li><p>If <code>analysis</code> is "ratio": <code>vars</code> takes a named vector. Names will be passed to <code>nums</code> in <code><a href="svy_ratio.html">svy_ratio()</a></code> and values to <code>denoms</code>.</p></li>
 <li><p>If choices not NULL, the function tries to retrieve labels for select_one, while it is mandatory for select_multiple, and not used for mean, median, and ratio.</p></li>
 </ul></div>
     <div class="section level2">
