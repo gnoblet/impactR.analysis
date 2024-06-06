@@ -49,6 +49,11 @@ svy_interact <- function(design, interact, interact_key_sep = " -/- ", group = N
   # Warn on the CI level:
   if (level < 0.9 & vartype == "ci"){rlang::warn("The confidence level used  is below 90%.")}
 
+  # If interact is of length 1, throw a warning saying that it is not an interaction and it revert back to "svy_proportion()"
+  if (length(interact) == 1) {
+    rlang::warn("The 'interact' argument is of length 1. It is not an interaction and the calculation is the same as 'svy_proportion()'.")
+  }
+
   #------ Body
 
   # Get number of rows

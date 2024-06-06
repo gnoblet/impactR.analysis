@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(impactR.analysis)
+library(dplyr)
 ```
 
 This vignette emphasizes how to analyze survey data based on Kobo, leveraging both the `svy_*()` family of functions and a Kobo tool. 
@@ -79,6 +80,11 @@ kobo_median_all(design,survey)
 kobo_ratio(design, nums = "e_abandont_3a_4a_fille", denoms = "c_total_3_17_femmes", survey = survey)
 ```
 
+## Interaction of variables (e.g. for needs profiles)
+
+```{r kobo-interact, eval = F}
+kobo_interact(design, c("h_2_type_latrine", "e_typ_ecole_publique"), survey = survey)
+```
 
 
 ## Quick automation
@@ -105,6 +111,8 @@ kobo_analysis(design, analysis = "select_one", vars = c("h_2_type_latrine", "adm
 # Calculate a select_multiple proportion
 kobo_analysis(design, analysis = "select_multiple", vars = "e_typ_ecole", survey, choices)
 
+# Calculat the proportio of an interaction
+kobo_analysis(design, analysis = "interact", vars = c("h_2_type_latrine", "e_typ_ecole_publique"), survey)
 ```
 
 ## Make your own analysis using a data analysis plan
@@ -116,10 +124,10 @@ Necessary columns are: `analysis`, `vars`, `na_rm`. Other arguments are to be pa
 - bind all
 - left_join the other columns
 
-It should contain only one variable to analyze per row (or in the case of a ratio the two variables to calculate the ratio from separated by a comma). The package contains an example:
+It should contain only one variable to analyze per row (or in the case of a ratio the two variables to calculate the ratio from separated by a comma or in the case of interaction the variables separated by a comma). The package contains an example:
 
 ```{r kobo-analysis-dap}
-analysis_dap
+analysis_dap |> dplyr::as_tibble()
 ```
 
 

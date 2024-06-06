@@ -11,7 +11,7 @@
 #'
 #' @inheritParams svy_interact
 #'
-kobo_interact <- function(design, vars, interact_key_sep = "-/-", survey, choices = NULL, group = NULL, group_key_sep = "-/-", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
+kobo_interact <- function(design, vars, interact_key_sep = " -/- ", survey, choices = NULL, group = NULL, group_key_sep = " -/- ", label_survey = TRUE, na_rm = TRUE, vartype = "ci", level = 0.95){
 
   #------ Gather arguments
 

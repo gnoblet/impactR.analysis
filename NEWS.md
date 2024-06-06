@@ -1,6 +1,8 @@
 # impactR.analysis 0.0.5
 
 * New: added `auto_group_remove` parameter to `kobo_analysis()`, made to automatically remove grouping columns from the analysis (#21).
+* New: added `kobo_interact()` function, a wrapper around `svy_interact()` to calculate proportions of interactions between variables.
+* Change: `kobo_analysis()` and `kobo_analysis_from_dap()` calculates interactions between vars when `analysis = "interact"`.
 
 # impactR.analysis 0.0.4
 
