@@ -7,11 +7,11 @@
 kobo_interact(
   design,
   vars,
-  interact_key_sep = "-/-",
+  interact_key_sep = " -/- ",
   survey,
   choices = NULL,
   group = NULL,
-  group_key_sep = "-/-",
+  group_key_sep = " -/- ",
   label_survey = TRUE,
   na_rm = TRUE,
   vartype = "ci",

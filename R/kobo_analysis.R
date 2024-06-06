@@ -11,7 +11,7 @@
 #'
 #' @section Specificity per type of analysis:
 #'
-#' The possible analysis type are: mean for [kobo_mean()], median for [kobo_median()], select_one for [kobo_select_one()], select_multiple for [kobo_select_multiple()], or ratio for [kobo_ratio()].
+#' The possible analysis type are: mean for [kobo_mean()], median for [kobo_median()], select_one for [kobo_select_one()], select_multiple for [kobo_select_multiple()], or ratio for [kobo_ratio()]. It now also incldues interactions between variables [kobo_interact()] using `analysis = "interact"`?
 #'
 #' * If `analysis` is "ratio": `vars` takes a named vector. Names will be passed to `nums` in [svy_ratio()] and values to `denoms`.
 #' * If choices not NULL, the function tries to retrieve labels for select_one, while it is mandatory for select_multiple, and not used for mean, median, and ratio.

@@ -68,7 +68,7 @@ Kobo survey analysis
 \section{Specificity per type of analysis}{
 
 
-The possible analysis type are: mean for \code{\link[=kobo_mean]{kobo_mean()}}, median for \code{\link[=kobo_median]{kobo_median()}}, select_one for \code{\link[=kobo_select_one]{kobo_select_one()}}, select_multiple for \code{\link[=kobo_select_multiple]{kobo_select_multiple()}}, or ratio for \code{\link[=kobo_ratio]{kobo_ratio()}}.
+The possible analysis type are: mean for \code{\link[=kobo_mean]{kobo_mean()}}, median for \code{\link[=kobo_median]{kobo_median()}}, select_one for \code{\link[=kobo_select_one]{kobo_select_one()}}, select_multiple for \code{\link[=kobo_select_multiple]{kobo_select_multiple()}}, or ratio for \code{\link[=kobo_ratio]{kobo_ratio()}}. It now also incldues interactions between variables \code{\link[=kobo_interact]{kobo_interact()}} using \code{analysis = "interact"}?
 \itemize{
 \item If \code{analysis} is "ratio": \code{vars} takes a named vector. Names will be passed to \code{nums} in \code{\link[=svy_ratio]{svy_ratio()}} and values to \code{denoms}.
 \item If choices not NULL, the function tries to retrieve labels for select_one, while it is mandatory for select_multiple, and not used for mean, median, and ratio.
