@@ -29,7 +29,6 @@ kobo_ratio <- function(design, nums, denoms, ratio_key_sep = " -/- ", survey, gr
   if_not_in_stop(design, denoms, "design")
   vars <- c(nums, denoms)
 
-
   # Check survey and choices columns
   if_not_in_stop(survey, c("type", "name"), "survey")
 

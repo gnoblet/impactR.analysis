@@ -19,6 +19,7 @@ kobo_analysis(
   vartype = "ci",
   level = 0.95,
   ratio_key_sep = " -/- ",
+  interact_key_sep = " -/- ",
   choices_sep = "/"
 )
 }
@@ -53,6 +54,8 @@ confidence interval ("ci"), variance ("var") or coefficient of variation
 the confidence level}
 
 \item{ratio_key_sep}{A separator for the ratio key.}
+
+\item{interact_key_sep}{A character string to separate interactions columns in a fancy 'interact_key" column.}
 
 \item{choices_sep}{Select multiples choices separator.}
 }
