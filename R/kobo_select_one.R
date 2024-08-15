@@ -43,15 +43,29 @@ kobo_select_one <- function(design, vars, survey, choices = NULL, group = NULL, 
   # Now it is, see select_multiple
   select_ones <- impactR.kobo::get_survey_select_one(survey)
 
-  # select_multiples that exists in design
+  #  Warn if variables not a select_one is used and above 10 categories
   if (any(!(vars %in% select_ones))) {
 
     vars_not_select_one <- vars[!(vars %in% select_ones)]
+    counts <- purrr::imap_int(vars_not_select_one, \(x, idx) length(unique(design$variables[[x]])))
+    counts_above_10 <- vars_not_select_one[counts >= 10]
 
-    rlang::abort(
-    c("Variable is not a select_one in survey.",
-      "i" = glue::glue("You may check that column ", glue::glue_collapse(vars_not_select_one, sep = ", ", last = " and "), " is/are a `select_one` in 'survey'. Maybe verify that the survey sheet is the right and most updated version.")
+    # Warn for the variables that are not select ones
+    rlang::warn(
+    c("Variable that are not of type 'select_one' in survey.",
+      "i" = glue::glue("The following variables are not of type 'select_one' on survey:", glue::glue_collapse(vars_not_select_one, sep = ", ", last = " and "), ".")
     ))
+
+    # Explicitly warn for potential lengthy analysis if number of unique is above 10
+    if (length(counts_above_10) > 0) {
+
+      rlang::warn(
+        c("The analysis for the following variables that are not of type 'select_one' may take time.",
+          "i" = glue::glue("The following variables have more than 10 unique values: ", glue::glue_collapse(counts_above_10, sep = ", ", last = " and "), ".")
+        )
+      )
+
+    }
 
   }
 
