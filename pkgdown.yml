@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   kobo_analysis: kobo_analysis.html
-last_built: 2025-02-12T16:12Z
+last_built: 2025-02-12T16:21Z
 urls:
   reference: https://impact-initiatives-hppu.github.io/impactR.analysis/reference
   article: https://impact-initiatives-hppu.github.io/impactR.analysis/articles
