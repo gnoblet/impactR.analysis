@@ -107,8 +107,12 @@ svy_quantile <- function(design, vars, quantiles = c(0.25, 0.5, 0.75), group = N
     vars,
     \(x) make_quantile(design, x, quantiles = quantiles, group = group, group_key = group_key, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ...)
   )
-
+  
   analysis <- purrr::list_rbind(analysis)
+
+  # if analysis is empty df, return
+  if (nrow(analysis) == 0) return(analysis)
+
 
   return(analysis)
 

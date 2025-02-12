@@ -112,8 +112,11 @@ svy_median <- function(design, vars, group = NULL,  group_key_sep = " -/- ", na_
     vars,
     \(x) make_median(design, x, group = group, group_key = group_key, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ...)
   )
-
+  
   analysis <- purrr::list_rbind(analysis)
+
+  # if analysis is empty df, return
+  if (nrow(analysis) == 0) return(analysis)
 
   analysis <- dplyr::mutate(analysis, var_value = NA_character_, .after = "var")
 

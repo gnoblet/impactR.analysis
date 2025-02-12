@@ -114,6 +114,9 @@ svy_mean <- function(design, vars, group = NULL, group_key_sep = " -/- ", na_rm 
 
   analysis <- purrr::list_rbind(analysis)
 
+  # if analysis is empty df, return
+  if (nrow(analysis) == 0) return(analysis)
+
   analysis <- dplyr::mutate(analysis, var_value = NA_character_, .after = "var")
 
   # Add the analysis key
