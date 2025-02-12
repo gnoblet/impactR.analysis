@@ -50,6 +50,7 @@ svy_quantile <- function(design, vars, quantiles = c(0.25, 0.5, 0.75), group = N
 
     # if all NA, return empty tibble
     if (all(is.na(srvyr::pull(design, !!rlang::sym(var))))) {
+      rlang::warn(paste0("Variable '", var, "' only contains missing values. Returning an empty data frame."))
       return(dplyr::tibble())  # Return an empty data.frame
     }
 

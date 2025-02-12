@@ -51,8 +51,9 @@ svy_mean <- function(design, vars, group = NULL, group_key_sep = " -/- ", na_rm 
 
   make_mean <- function(design, var, group, group_key, group_key_sep, na_rm, vartype, level, ...){
 
-    # if all NA, return empty tibble
+    # if all NA, return empty tibble and warn for this var it's empty
     if (all(is.na(srvyr::pull(design, !!rlang::sym(var))))) {
+      rlang::warn(paste0("Variable '", var, "' only contains missing values. Returning an empty data frame."))
       return(dplyr::tibble())  # Return an empty data.frame
     }
 

@@ -53,6 +53,7 @@ svy_median <- function(design, vars, group = NULL,  group_key_sep = " -/- ", na_
 
     # if all NA, return empty tibble
     if (all(is.na(srvyr::pull(design, !!rlang::sym(var))))) {
+      rlang::warn(paste0("Variable '", var, "' only contains missing values. Returning an empty data frame."))
       return(dplyr::tibble())  # Return an empty data.frame
     }
 

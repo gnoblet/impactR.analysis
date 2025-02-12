@@ -60,6 +60,7 @@ svy_ratio <- function(design, nums, denoms, ratio_key_sep = " -/- ", group = NUL
 
     # if all NA, return empty tibble
     if (all(is.na(c(srvyr::pull(design, !!rlang::sym(num)), srvyr::pull(design, !!rlang::sym(denom)))))) {
+      rlang::warn(paste0("Variable '", num, "' and variable '", denom, "' only contains missing values. Returning an empty data frame."))
       return(dplyr::tibble())  # Return an empty data.frame
     }
 
