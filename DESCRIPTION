@@ -21,11 +21,10 @@ Imports:
     rlang (>= 0.4.11),
     tidyr,
     stringr,
-    analysistools
+    checkmate
 Remotes:
     gnoblet/impactR.utils,
-    gnoblet/impactR.kobo,
-    impact-initiatives/analysistools
+    gnoblet/impactR.kobo
 Depends: 
     R (>= 3.5.0)
 LazyData: true
