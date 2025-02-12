@@ -124,6 +124,9 @@ svy_proportion <- function(design, vars, group = NULL, group_key_sep = " -/- ", 
 
   analysis <- purrr::list_rbind(analysis)
 
+  # if analysis is empty df, return
+  if (nrow(analysis) == 0) return(analysis)
+
   # Add the analysis key
   if(ak) analysis <- add_analysis_key(analysis, group_key_sep = group_key_sep, overall_sep = ak_overall_sep, main_sep =  ak_main_sep, var_to_value_sep = ak_var_to_value_sep)
 

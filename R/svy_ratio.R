@@ -124,6 +124,10 @@ svy_ratio <- function(design, nums, denoms, ratio_key_sep = " -/- ", group = NUL
 
   analysis <- purrr::list_rbind(analysis)
 
+  # if analysis is empty df, return
+  if (nrow(analysis) == 0) return(analysis)
+
+
   analysis <- dplyr::mutate(analysis, var_value = NA_character_, .after = "var")
 
   # Add the analysis key
