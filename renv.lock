@@ -360,9 +360,9 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteUsername": "gnoblet",
       "RemoteRepo": "impactR.kobo",
-      "RemoteRef": "main",
+      "RemoteUsername": "gnoblet",
+      "RemotePkgRef": "gnoblet/impactR.kobo",
       "RemoteSha": "85d78a6e9a486e4fde1a4db817450ff42cd06e75",
       "Requirements": [
         "R",
@@ -375,7 +375,7 @@
         "tibble",
         "tidyr"
       ],
-      "Hash": "f3c212d4a43bc55c8c9ec8a7d41d782b"
+      "Hash": "3c36fa5deb1dc4491d34c993cfaf2067"
     },
     "impactR.utils": {
       "Package": "impactR.utils",

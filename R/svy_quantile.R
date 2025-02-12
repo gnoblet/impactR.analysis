@@ -48,6 +48,10 @@ svy_quantile <- function(design, vars, quantiles = c(0.25, 0.5, 0.75), group = N
 
   make_quantile <- function(design, var, quantiles, group, group_key, group_key_sep, na_rm, vartype, level, ...){
 
+    # if all NA, return empty tibble
+    if (all(is.na(srvyr::pull(design, !!rlang::sym(var))))) {
+      return(dplyr::tibble())  # Return an empty data.frame
+    }
 
     # Get number of NAs
     na_count_tot <- sum(is.na(srvyr::pull(design, !!rlang::sym(var))))
