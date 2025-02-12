@@ -38,10 +38,10 @@ svy_interact <- function(design, interact, interact_key_sep = " -/- ", group = N
   if (!("tbl_svy") %in% class(design)) rlang::abort("'design' is not a `tbl_svy` object.")
 
   # Check if interact are in design
-  if_not_in_stop(design, interact, df_name = "design", arg = "interact")
+  checkmate::assertSubset(interact, colnames(design))
 
   # Check if group cols are in design
-  if_not_in_stop(design, group, df_name = "design", arg = "group")
+  if(!is.null(group))  checkmate::assertSubset(group, colnames(design)) 
 
   # Check if col is not a grouping column
   if (any(interact %in% group)) rlang::abort("Grouping columns in `group` should be different than those in `interact`.")

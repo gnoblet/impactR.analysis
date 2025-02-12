@@ -32,13 +32,13 @@ kobo_select_multiple <- function(design, vars, survey, choices = NULL, choices_s
   #------ Check
 
   # Check if vars are in design
-  if_not_in_stop(design$variables, vars, "design", "var")
+  checkmate::assertSubset(vars, colnames(design))
 
   #Checj if survey contains the necessary columns
-  if_not_in_stop(survey, c("type", "name"), "survey")
+  checkmate::assertSubset(c("type", "name"), colnames(survey))
 
   # Check if choices contains the necessary columns
-  if_not_in_stop(choices, c("label", "name"), "choices")
+  if (!is.null(choices)) checkmate::assertSubset(c("label", "name"), colnames(choices))
 
   # Check if vars are indeed select multiples (restrictive for a reason)
   select_multiples <- impactR.kobo::get_survey_select_multiple(survey)

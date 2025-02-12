@@ -39,13 +39,13 @@ svy_ratio <- function(design, nums, denoms, ratio_key_sep = " -/- ", group = NUL
   if (length(nums) != length(denoms)) rlang::abort("Lengths of `nums` and `denoms` are different. Please provide the same number of numerators and denominators.")
 
   # Check if num are in design
-  if_not_in_stop(design, nums, df_name = "design", arg = "nums")
+  checkmate::assertSubset(nums, colnames(design))
 
   # Check if denom are in design
-  if_not_in_stop(design, denoms, df_name = "design", arg = "denoms")
+  checkmate::assertSubset(denoms, colnames(design))
 
   # Check if group cols are in design
-  if_not_in_stop(design, group, df_name = "design", arg = "group")
+  if (!is.null(group)) checkmate::assertSubset(group, colnames(design))
 
   # Check if col is not a grouping column
   if (any(c(nums, denoms) %in% group)) rlang::abort("Grouping columns in `group` should be different than `nums` or `denoms`.")
@@ -58,6 +58,10 @@ svy_ratio <- function(design, nums, denoms, ratio_key_sep = " -/- ", group = NUL
 
   make_ratio <- function(design, num, denom, ratio_key_sep, group, group_key, group_key_sep, na_rm, vartype, level, ...){
 
+    # if all NA, return empty tibble
+    if (all(is.na(c(srvyr::pull(design, !!rlang::sym(num)), srvyr::pull(design, !!rlang::sym(denom)))))) {
+      return(dplyr::tibble())  # Return an empty data.frame
+    }
 
     # Get number of NAs -- for ratio it either for num or denom
     na_count_tot <- sum(is.na(srvyr::pull(design, !!rlang::sym(denom))) | is.na(srvyr::pull(design, !!rlang::sym(num))))

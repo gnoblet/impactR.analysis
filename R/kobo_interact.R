@@ -22,11 +22,11 @@ kobo_interact <- function(design, vars, interact_key_sep = " -/- ", survey, choi
   #------ Checks
 
   # Check if vars are in design
-  if_not_in_stop(design, vars, "design")
+  checkmate::assertSubset(vars, colnames(design))
 
-  # Check survey and choices columns
-  if_not_in_stop(survey, c("type", "name"), "survey")
-  if (!is.null(choices)) if_not_in_stop(choices, c("label", "name"), "choices")
+  # Check survey columns
+  checkmate::assertSubset(c("type", "name"), colnames(survey))
+  if (!is.null(choices)) checkmate::assertSubset(c("label", "name"), colnames(choices))
 
 
   # Calculate proportion of interactions

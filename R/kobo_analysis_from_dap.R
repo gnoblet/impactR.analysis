@@ -28,7 +28,7 @@ kobo_analysis_from_dap <- function(design, dap, survey, choices, group = NULL, l
   #------ Checks
 
   # Check if all necesarry columns are here
-  if_not_in_stop(dap, c("analysis", "var", "na_rm"), "dap")
+  checkmate::assertSubset(c("analysis", "var", "na_rm"), colnames(dap))
 
   # Check if types are the right ones
   analysis_type <- c("mean", "median", "select_multiple", "select_one", "ratio")
@@ -107,7 +107,7 @@ kobo_analysis_from_dap_group <- function(design, dap, survey, choices, l_group, 
   if (!is.list(l_group)) rlang::abort("'l_group' should be a list.")
 
   # Check if all elements are vectors of variables that exist in the design
-  purrr::map(l_group, \(x) if_not_in_stop(design$variables, x, "design"))
+  purrr::map(l_group, \(x) checkmate::assertSubset(x, colnames(design)))
 
   #------ Run analysis
 
