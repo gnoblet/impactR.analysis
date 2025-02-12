@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">impactR.analysis</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +73,7 @@
 <p>You can install the development version of impactR.analysis from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"gnoblet/impactR.analysis"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"impact-initiatives-hppu/impactR.analysis"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="the-svy_-family-wrappers-around-srvyr-functions">The <code>svy_*()</code> family, wrappers around <code>srvyr</code> functions.<a class="anchor" aria-label="anchor" href="#the-svy_-family-wrappers-around-srvyr-functions"></a>
@@ -85,13 +85,13 @@
 <span></span>
 <span><span class="co"># Get proportion for a variable (not kobo related)</span></span>
 <span><span class="co"># check the help</span></span>
-<span><span class="op">?</span><span class="fu">svy_prop</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">svy_prop</span><span class="op">(</span><span class="va">design</span>, vars <span class="op">=</span> <span class="st">"h_2_type_latrine"</span><span class="op">)</span></span>
+<span><span class="op">?</span><span class="fu"><a href="reference/svy_proportion.html">svy_proportion</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/svy_proportion.html">svy_proportion</a></span><span class="op">(</span><span class="va">design</span>, vars <span class="op">=</span> <span class="st">"h_2_type_latrine"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Get proportion with a grouping column and for two vars</span></span>
 <span><span class="co"># This grouping parameter exists for all svy family function</span></span>
 <span><span class="co"># It can be a vector of grouping columns</span></span>
-<span><span class="fu">svy_prop</span><span class="op">(</span><span class="va">design</span>, vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"h_2_type_latrine"</span>, <span class="st">"admin1"</span><span class="op">)</span>, group <span class="op">=</span> <span class="st">"milieu"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/svy_proportion.html">svy_proportion</a></span><span class="op">(</span><span class="va">design</span>, vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"h_2_type_latrine"</span>, <span class="st">"admin1"</span><span class="op">)</span>, group <span class="op">=</span> <span class="st">"milieu"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Same thing with mean or median </span></span>
 <span><span class="co"># % of HHs attending public schools with the dummy variable</span></span>
@@ -125,7 +125,7 @@
 <div class="section level2">
 <h2 id="analysis-based-on-a-kobo-tool">Analysis based on a Kobo tool<a class="anchor" aria-label="anchor" href="#analysis-based-on-a-kobo-tool"></a>
 </h2>
-<p>For all analyses based on a Kobo tool, see: vignette <a href="https://gnoblet.github.io/impactR.analysis/articles/kobo_analysis.html" class="external-link">Survey analysis based on a Kobo tool</a>.</p>
+<p>For all analyses based on a Kobo tool, see: vignette <a href="https://impact-initiatives-hppu.github.io/impactR.analysis/articles/kobo_analysis.html">Survey analysis based on a Kobo tool</a>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
