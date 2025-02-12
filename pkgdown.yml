@@ -1,10 +1,9 @@
 pandoc: 3.1.11
-pkgdown: 2.0.9
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   kobo_analysis: kobo_analysis.html
-last_built: 2024-06-13T14:26Z
+last_built: 2025-02-12T11:17Z
 urls:
   reference: https://impact-initiatives-hppu.github.io/impactR.analysis/reference
   article: https://impact-initiatives-hppu.github.io/impactR.analysis/articles
-

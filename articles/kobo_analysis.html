@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="impactR.analysis">
 <title>Survey analysis based on a Kobo tool • impactR.analysis</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -15,54 +14,44 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Survey analysis based on a Kobo tool">
-<meta property="og:description" content="impactR.analysis">
-<meta property="og:image" content="https://impact-initiatives-hppu.github.io/impactR.analysis/logo.png">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Survey analysis based on a Kobo tool">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">impactR.analysis</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/kobo_analysis.html">Survey analysis based on a Kobo tool</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/kobo_analysis.html">Survey analysis based on a Kobo tool</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav"></ul>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+      </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -74,14 +63,23 @@
       <img src="../logo.png" class="logo" alt=""><h1>Survey analysis based on a Kobo tool</h1>
             
       
-      
+
       <div class="d-none name"><code>kobo_analysis.Rmd</code></div>
     </div>
 
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://impact-initiatives-hppu.github.io/impactR.analysis/">impactR.analysis</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://impact-initiatives-hppu.github.io/impactR.analysis/">impactR.analysis</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span></code></pre></div>
 <p>This vignette emphasizes how to analyze survey data based on Kobo,
 leveraging both the <code>svy_*()</code> family of functions and a Kobo
 tool.</p>
@@ -154,6 +152,12 @@ calculate)<a class="anchor" aria-label="anchor" href="#mean-and-median-for-numer
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/kobo_ratio.html">kobo_ratio</a></span><span class="op">(</span><span class="va">design</span>, nums <span class="op">=</span> <span class="st">"e_abandont_3a_4a_fille"</span>, denoms <span class="op">=</span> <span class="st">"c_total_3_17_femmes"</span>, survey <span class="op">=</span> <span class="va">survey</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="interaction-of-variables-e-g--for-needs-profiles">Interaction of variables (e.g. for needs profiles)<a class="anchor" aria-label="anchor" href="#interaction-of-variables-e-g--for-needs-profiles"></a>
+</h2>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/kobo_interact.html">kobo_interact</a></span><span class="op">(</span><span class="va">design</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"h_2_type_latrine"</span>, <span class="st">"e_typ_ecole_publique"</span><span class="op">)</span>, survey <span class="op">=</span> <span class="va">survey</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="quick-automation">Quick automation<a class="anchor" aria-label="anchor" href="#quick-automation"></a>
 </h2>
 <p>The <code><a href="../reference/auto_kobo_analysis.html">auto_kobo_analysis()</a></code> function runs all the above
@@ -168,7 +172,7 @@ types as defined in the Kobo tool.)</p>
 <div class="section level2">
 <h2 id="make-your-own-analysis">Make your own analysis<a class="anchor" aria-label="anchor" href="#make-your-own-analysis"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calculate a mean</span></span>
 <span><span class="fu"><a href="../reference/kobo_analysis.html">kobo_analysis</a></span><span class="op">(</span><span class="va">design</span>, analysis <span class="op">=</span> <span class="st">"mean"</span>, vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c_total_3_17_femmes"</span>, <span class="st">"e_abandont_3a_4a_fille"</span><span class="op">)</span>, <span class="va">survey</span><span class="op">)</span></span>
 <span></span>
@@ -182,7 +186,10 @@ types as defined in the Kobo tool.)</p>
 <span><span class="fu"><a href="../reference/kobo_analysis.html">kobo_analysis</a></span><span class="op">(</span><span class="va">design</span>, analysis <span class="op">=</span> <span class="st">"select_one"</span>, vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"h_2_type_latrine"</span>, <span class="st">"admin1"</span><span class="op">)</span>, <span class="va">survey</span>, <span class="va">choices</span>, na_rm <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Calculate a select_multiple proportion</span></span>
-<span><span class="fu"><a href="../reference/kobo_analysis.html">kobo_analysis</a></span><span class="op">(</span><span class="va">design</span>, analysis <span class="op">=</span> <span class="st">"select_multiple"</span>, vars <span class="op">=</span> <span class="st">"e_typ_ecole"</span>, <span class="va">survey</span>, <span class="va">choices</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/kobo_analysis.html">kobo_analysis</a></span><span class="op">(</span><span class="va">design</span>, analysis <span class="op">=</span> <span class="st">"select_multiple"</span>, vars <span class="op">=</span> <span class="st">"e_typ_ecole"</span>, <span class="va">survey</span>, <span class="va">choices</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculat the proportio of an interaction</span></span>
+<span><span class="fu"><a href="../reference/kobo_analysis.html">kobo_analysis</a></span><span class="op">(</span><span class="va">design</span>, analysis <span class="op">=</span> <span class="st">"interact"</span>, vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"h_2_type_latrine"</span>, <span class="st">"e_typ_ecole_publique"</span><span class="op">)</span>, <span class="va">survey</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="make-your-own-analysis-using-a-data-analysis-plan">Make your own analysis using a data analysis plan<a class="anchor" aria-label="anchor" href="#make-your-own-analysis-using-a-data-analysis-plan"></a>
@@ -200,46 +207,28 @@ the sector, it is kept. The function runs as is:</p>
 </ul>
 <p>It should contain only one variable to analyze per row (or in the
 case of a ratio the two variables to calculate the ratio from separated
-by a comma). The package contains an example:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">analysis_dap</span></span>
-<span><span class="co">#&gt;                sector</span></span>
-<span><span class="co">#&gt; 1 General information</span></span>
-<span><span class="co">#&gt; 2            Expenses</span></span>
-<span><span class="co">#&gt; 3           Education</span></span>
-<span><span class="co">#&gt; 4          Sanitation</span></span>
-<span><span class="co">#&gt; 5           Education</span></span>
-<span><span class="co">#&gt; 6           Education</span></span>
-<span><span class="co">#&gt;                                                                       indicator</span></span>
-<span><span class="co">#&gt; 1                       Mean of the number of school-aged girl in the household</span></span>
-<span><span class="co">#&gt; 2                                                       Median of food expenses</span></span>
-<span><span class="co">#&gt; 3 A ratio that does not really mean anything and is a bad example for education</span></span>
-<span><span class="co">#&gt; 4                                            % of households by type of latrine</span></span>
-<span><span class="co">#&gt; 5       % of households by type of school that children go to (private, public)</span></span>
-<span><span class="co">#&gt; 6       % of households by type of school that children go to (private, public)</span></span>
-<span><span class="co">#&gt;                                          var        analysis na_rm</span></span>
-<span><span class="co">#&gt; 1                        c_total_3_17_femmes            mean   yes</span></span>
-<span><span class="co">#&gt; 2                            f_5_depenses_ba          median   yes</span></span>
-<span><span class="co">#&gt; 3 e_abandont_3a_4a_fille,c_total_3_17_femmes           ratio   yes</span></span>
-<span><span class="co">#&gt; 4                           h_2_type_latrine      select_one    no</span></span>
-<span><span class="co">#&gt; 5                                e_typ_ecole select_multiple   yes</span></span>
-<span><span class="co">#&gt; 6                                e_typ_ecole select_multiple    no</span></span>
-<span><span class="co">#&gt;                                         subset</span></span>
-<span><span class="co">#&gt; 1              Household with school-aged girl</span></span>
-<span><span class="co">#&gt; 2                                         &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 3   Maybe a subset that does not mean anything</span></span>
-<span><span class="co">#&gt; 4                                         &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 5 Households with at least a school-aged child</span></span>
-<span><span class="co">#&gt; 6                                         &lt;NA&gt;</span></span></code></pre></div>
-<p>Then, to run the analysis, do the following:</p>
+by a comma or in the case of interaction the variables separated by a
+comma). The package contains an example:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">analysis_dap</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span></span>
+<span><span class="co">#&gt;   sector              indicator                      var   analysis na_rm subset</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> General information Mean of the number of school-… c_to… mean     yes   House…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Expenses            Median of food expenses        f_5_… median   yes   <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Education           A ratio that does not really … e_ab… ratio    yes   Maybe…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Sanitation          % of households by type of la… h_2_… select_… no    <span style="color: #BB0000;">NA</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Education           % of households by type of sc… e_ty… select_… yes   House…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Education           % of households by type of sc… e_ty… select_… no    <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+<p>Then, to run the analysis, do the following:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Default</span></span>
 <span><span class="fu"><a href="../reference/kobo_analysis_from_dap.html">kobo_analysis_from_dap</a></span><span class="op">(</span><span class="va">design</span>, <span class="va">analysis_dap</span>, <span class="va">survey</span>, <span class="va">choices</span>, choices_sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Grouped and confidence level of 0.99</span></span>
 <span><span class="fu"><a href="../reference/kobo_analysis_from_dap.html">kobo_analysis_from_dap</a></span><span class="op">(</span><span class="va">design</span>, <span class="va">analysis_dap</span>, <span class="va">survey</span>, <span class="va">choices</span>, group <span class="op">=</span> <span class="st">"milieu"</span>, level <span class="op">=</span> <span class="fl">0.99</span>, choices_sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span></span></code></pre></div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
@@ -250,15 +239,15 @@ by a comma). The package contains an example:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
