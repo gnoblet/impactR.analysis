@@ -17,7 +17,7 @@ You can install the development version of impactR.analysis from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("gnoblet/impactR.analysis")
+devtools::install_github("impact-initiatives-hppu/impactR.analysis")
 ```
 
 ## The `svy_*()` family, wrappers around `srvyr` functions.
@@ -34,13 +34,13 @@ library(impactR.analysis)
 
 # Get proportion for a variable (not kobo related)
 # check the help
-?svy_prop()
-svy_prop(design, vars = "h_2_type_latrine")
+?svy_proportion()
+svy_proportion(design, vars = "h_2_type_latrine")
 
 # Get proportion with a grouping column and for two vars
 # This grouping parameter exists for all svy family function
 # It can be a vector of grouping columns
-svy_prop(design, vars = c("h_2_type_latrine", "admin1"), group = "milieu")
+svy_proportion(design, vars = c("h_2_type_latrine", "admin1"), group = "milieu")
 
 # Same thing with mean or median 
 # % of HHs attending public schools with the dummy variable
@@ -79,4 +79,4 @@ auto_svy_analysis(design)
 
 For all analyses based on a Kobo tool, see: vignette [Survey analysis
 based on a Kobo
-tool](https://gnoblet.github.io/impactR.analysis/articles/kobo_analysis.html).
+tool](https://impact-initiatives-hppu.github.io/impactR.analysis/articles/kobo_analysis.html).

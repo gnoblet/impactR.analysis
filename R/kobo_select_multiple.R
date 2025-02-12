@@ -32,13 +32,13 @@ kobo_select_multiple <- function(design, vars, survey, choices = NULL, choices_s
   #------ Check
 
   # Check if vars are in design
-  if_not_in_stop(design$variables, vars, "design", "var")
+  checkmate::assertSubset(vars, colnames(design))
 
   #Checj if survey contains the necessary columns
-  if_not_in_stop(survey, c("type", "name"), "survey")
+  checkmate::assertSubset(c("type", "name"), colnames(survey))
 
   # Check if choices contains the necessary columns
-  if_not_in_stop(choices, c("label", "name"), "choices")
+  if (!is.null(choices)) checkmate::assertSubset(c("label", "name"), colnames(choices))
 
   # Check if vars are indeed select multiples (restrictive for a reason)
   select_multiples <- impactR.kobo::get_survey_select_multiple(survey)
@@ -77,7 +77,7 @@ kobo_select_multiple <- function(design, vars, survey, choices = NULL, choices_s
     if (length(select_multiple_child_in_design) == 0) rlang::abort(
       c("No child column.",
         "*" = glue::glue("There is no child column found for column '{var}' in `design`. The 1/0 child columns are needed for calculation."),
-        "i" = glue::glue("You may check that column '{var}' is a `select_multiple` question. You may also check that the provided separator for choices is the right one (arg 'choices_sep' default to '_'). Finally, you can verify that the survey sheet is the right and most updated version.")
+        "i" = glue::glue("You may check that column '{var}' is a `select_multiple` question. You may also check that the provided separator for choices is the right one (arg 'choices_sep' default to '/'). Finally, you can verify that the survey sheet is the right and most updated version.")
       ))
 
     # if SOME child columns are in survey but not in the dataset, warn that they were discarded.

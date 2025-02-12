@@ -31,11 +31,11 @@ svy_quantile <- function(design, vars, quantiles = c(0.25, 0.5, 0.75), group = N
   if (!("tbl_svy") %in% class(design)) rlang::abort("'design' is not a `tbl_svy` object.")
 
   # Check if var are in design
-  if_not_in_stop(design, vars, df_name = "design", arg = "vars")
+  checkmate::assertSubset(vars, colnames(design))
 
   # Check if group cols are in design
-  if_not_in_stop(design, group, df_name = "design", arg = "group")
-
+  if (!is.null(group)) checkmate::assertSubset(group, colnames(design))
+  
   # Check if var is not a grouping column
   #--- simple abortin check, that could become a warning
   if (any(vars %in% group)) rlang::abort("Grouping columns in `group` should be different than the ones in `vars`.")
@@ -48,6 +48,11 @@ svy_quantile <- function(design, vars, quantiles = c(0.25, 0.5, 0.75), group = N
 
   make_quantile <- function(design, var, quantiles, group, group_key, group_key_sep, na_rm, vartype, level, ...){
 
+    # if all NA, return empty tibble
+    if (all(is.na(srvyr::pull(design, !!rlang::sym(var))))) {
+      rlang::warn(paste0("Variable '", var, "' only contains missing values. Returning an empty data frame."))
+      return(dplyr::tibble())  # Return an empty data.frame
+    }
 
     # Get number of NAs
     na_count_tot <- sum(is.na(srvyr::pull(design, !!rlang::sym(var))))

@@ -25,12 +25,12 @@ kobo_ratio <- function(design, nums, denoms, ratio_key_sep = " -/- ", survey, gr
   #------ Checks
 
   # Check if vars are in design
-  if_not_in_stop(design, nums, "design")
-  if_not_in_stop(design, denoms, "design")
+  checkmate::assertSubset(nums, colnames(design))
+  checkmate::assertSubset(denoms, colnames(design))
   vars <- c(nums, denoms)
 
   # Check survey and choices columns
-  if_not_in_stop(survey, c("type", "name"), "survey")
+  checkmate::assertSubset(c("type", "name"), colnames(survey))
 
   # Checks if 1. there are no numeric variables, and 2. that vars are in survey
   suppressWarnings(

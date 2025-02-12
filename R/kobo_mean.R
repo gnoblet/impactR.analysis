@@ -26,12 +26,10 @@ kobo_mean <- function(design, vars, survey, group = NULL, group_key_sep = " -/- 
   #------ Checks
 
   # Check if vars are in design
-  if_not_in_stop(design, vars, "design")
-
+  checkmate::assertSubset(vars, colnames(design))
 
   # Check survey columns
-  if_not_in_stop(survey, c("type", "name"), "survey")
-
+  checkmate::assertSubset(c("type", "name"), colnames(survey))
   # Checks already in svy_mean()
   # - col and group existence, group and col identical
   # - level below 0.9 warning

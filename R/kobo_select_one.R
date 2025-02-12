@@ -27,11 +27,12 @@ kobo_select_one <- function(design, vars, survey, choices = NULL, group = NULL, 
   #------ Checks
 
   # Check if vars are in design
-  if_not_in_stop(design, vars, "design")
+  checkmate::assertSubset(vars, colnames(design))
 
   # Check survey and choices columns
-  if_not_in_stop(survey, c("type", "name"), "survey")
-  if (!is.null(choices)) if_not_in_stop(choices, c("label", "name"), "choices")
+  checkmate::assertSubset(c("type", "name"), colnames(survey))
+  if (!is.null(choices))   checkmate::assertSubset(c("label", "name"), colnames(choices))
+
 
   # Checks already in svy_proportion()
   # - col and group existence, group and col identical

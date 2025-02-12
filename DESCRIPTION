@@ -1,6 +1,6 @@
 Package: impactR.analysis
 Title: Analyzing survey data (collected with Kobo)
-Version: 0.0.6
+Version: 0.0.7
 Authors@R: c(
      person("Noblet", "Guillaume", email = "gnoblet@zaclys.net", role = c("aut", "cre"))
   )
@@ -8,7 +8,7 @@ Description: Providing helpers to support a (quasi-)automated survey data analys
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports: 
     dplyr (>= 1.1.0),
     impactR.kobo,
@@ -20,10 +20,11 @@ Imports:
     survey,
     rlang (>= 0.4.11),
     tidyr,
-    stringr
+    stringr,
+    checkmate
 Remotes:
-    github::gnoblet/impactR.utils,
-    github::gnoblet/impactR.kobo,
+    gnoblet/impactR.utils,
+    gnoblet/impactR.kobo
 Depends: 
     R (>= 3.5.0)
 LazyData: true
