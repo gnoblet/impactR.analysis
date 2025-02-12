@@ -1,3 +1,7 @@
+# impactR.analysis 0.0.6
+
+* Patch: `auto_svy_analysis()` now calls "proportion" instead of "prop" to.
+
 # impactR.analysis 0.0.5
 
 * New: added `auto_group_remove` parameter to `kobo_analysis()`, made to automatically remove grouping columns from the analysis (#21).

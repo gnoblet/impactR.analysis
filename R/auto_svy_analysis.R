@@ -33,7 +33,7 @@ auto_svy_analysis <- function(design, group = NULL, group_key_sep = " -/- ", na_
 
   character_cols <- colnames(design$variables)[purrr::map_lgl(design$variables, \(x) is.character(x))]
 
-  an["prop"] <- purrr::map("prop", \(x) svy_analysis(design, x, vars = character_cols, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level), .progress = "character")
+  an["prop"] <- purrr::map("proportion", \(x) svy_analysis(design, x, vars = character_cols, group = group, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level), .progress = "character")
 
 
   if (!bind) {

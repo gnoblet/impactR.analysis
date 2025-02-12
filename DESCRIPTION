@@ -1,6 +1,6 @@
 Package: impactR.analysis
 Title: Analyzing survey data (collected with Kobo)
-Version: 0.0.5
+Version: 0.0.6
 Authors@R: c(
      person("Noblet", "Guillaume", email = "gnoblet@zaclys.net", role = c("aut", "cre"))
   )
