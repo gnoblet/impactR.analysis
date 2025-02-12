@@ -117,15 +117,14 @@ svy_proportion <- function(design, vars, group = NULL, group_key_sep = " -/- ", 
     \(x) {
 
       an <- make_prop(design, x, group = group, group_key = group_key, group_key_sep = group_key_sep, na_rm = na_rm, vartype = vartype, level = level, ...)
+        # if analysis is empty df, return
+      if (nrow(an) == 0) return(an)
 
       an <- dplyr::mutate(an, "var_value" := as.character(!!rlang::sym("var_value")))
     }
   )
 
   analysis <- purrr::list_rbind(analysis)
-
-  # if analysis is empty df, return
-  if (nrow(analysis) == 0) return(analysis)
 
   # Add the analysis key
   if(ak) analysis <- add_analysis_key(analysis, group_key_sep = group_key_sep, overall_sep = ak_overall_sep, main_sep =  ak_main_sep, var_to_value_sep = ak_var_to_value_sep)
