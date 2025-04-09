@@ -61,11 +61,33 @@ svy_ratio <- function(design, nums, denoms, ratio_key_sep = " -/- ", group = NUL
     # if all NA, return empty tibble
     if (all(is.na(srvyr::pull(design, !!rlang::sym(num))))){
       rlang::warn(paste0("Variable '", num, "' only contains missing values. Returning an empty data frame."))
-      return(dplyr::tibble())  # Return an empty data.frame
+      return(dplyr::tibble(
+        na_count_tot = integer(),
+        n_tot = integer(),
+        stat = double(),
+        stat_unw = double(),
+        n_unw = integer(),
+        stat_type = character(),
+        group_key = character(),
+        var = character(),
+        num = character(),
+        denom = character()
+      ))  # Return an empty data.frame
     }
     if (all(is.na(srvyr::pull(design, !!rlang::sym(denom))))){
       rlang::warn(paste0("Variable '", denom, "' only contains missing values. Returning an empty data frame."))
-      return(dplyr::tibble())  # Return an empty data.frame
+      return(dplyr::tibble(
+        na_count_tot = integer(),
+        n_tot = integer(),
+        stat = double(),
+        stat_unw = double(),
+        n_unw = integer(),
+        stat_type = character(),
+        group_key = character(),
+        var = character(),
+        num = character(),
+        denom = character()
+      )) 
     }
 
     # Get number of NAs -- for ratio it either for num or denom

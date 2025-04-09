@@ -54,7 +54,17 @@ svy_proportion <- function(design, vars, group = NULL, group_key_sep = " -/- ", 
     # if all NA, return empty tibble
     if (all(is.na(srvyr::pull(design, !!rlang::sym(var))))) {
       rlang::warn(paste0("Variable '", var, "' only contains missing values. Returning an empty data frame."))
-      return(dplyr::tibble())  # Return an empty data.frame
+      return(dplyr::tibble(
+        na_count_tot = integer(),
+        n_tot = integer(),
+        stat = double(),
+        stat_unw = double(),
+        n_unw = integer(),
+        stat_type = character(),
+        group_key = character(),
+        var = character(),
+        var_value = character()
+      ))
     }
 
     # Get number of NAs
@@ -125,7 +135,7 @@ svy_proportion <- function(design, vars, group = NULL, group_key_sep = " -/- ", 
   )
 
   analysis <- purrr::list_rbind(analysis)
-  
+
   # if analysis is empty df, return
   if (nrow(analysis) == 0) return(analysis)
 
