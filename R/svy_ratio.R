@@ -59,8 +59,12 @@ svy_ratio <- function(design, nums, denoms, ratio_key_sep = " -/- ", group = NUL
   make_ratio <- function(design, num, denom, ratio_key_sep, group, group_key, group_key_sep, na_rm, vartype, level, ...){
 
     # if all NA, return empty tibble
-    if (all(is.na(c(srvyr::pull(design, !!rlang::sym(num)), srvyr::pull(design, !!rlang::sym(denom)))))) {
-      rlang::warn(paste0("Variable '", num, "' and variable '", denom, "' only contains missing values. Returning an empty data frame."))
+    if (all(is.na(srvyr::pull(design, !!rlang::sym(num))))){
+      rlang::warn(paste0("Variable '", num, "' only contains missing values. Returning an empty data frame."))
+      return(dplyr::tibble())  # Return an empty data.frame
+    }
+    if (all(is.na(srvyr::pull(design, !!rlang::sym(denom))))){
+      rlang::warn(paste0("Variable '", denom, "' only contains missing values. Returning an empty data frame."))
       return(dplyr::tibble())  # Return an empty data.frame
     }
 
@@ -114,7 +118,7 @@ svy_ratio <- function(design, nums, denoms, ratio_key_sep = " -/- ", group = NUL
     if (group_key == "") {to_return <- dplyr::mutate(to_return, group_key = NA_character_, group_key_value = NA_character_, .before = "var")}
 
     return(to_return)
-  }
+}
 
   analysis <- purrr::map2(
     nums,
